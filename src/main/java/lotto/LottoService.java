@@ -4,32 +4,37 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
+// service
 public class LottoService {
   private static final int LOTTO_PRICE = 1000;
 
+  // 랜덤 번호 생성 -> Lotto 객체 생성
   public static Lotto createRandomLotto() {
     List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
     return new Lotto(numbers);
   }
 
+  // 개수만큼 로또 생성
   public static List<Lotto> purchaseLotto(int purchaseAmount) {
-    List<Lotto> lottoSet = new ArrayList<>();
+    List<Lotto> lottoList = new ArrayList<>();
     int lottoCount = purchaseAmount / LOTTO_PRICE;
 
     for (int i = 0; i < lottoCount; i++) {
       Lotto lotto = createRandomLotto();
-      LottoUtils.validateLottoNumbers(lotto.getNumbers());
-      lottoSet.add(lotto);
+      LottoUtils.verifyLottoNumbers(lotto.getNumbers());
+      lottoList.add(lotto);
     }
-    return lottoSet;
+    return lottoList;
   }
 
+  // 당첨결과 계산 -> 반환
   public static int[] calculateWiningResult(List<Lotto> lottoSet, List<Integer> winningNumbers, int bonusWinningNumber) {
     int[] winingResult = new int[5]; // 3개 일치, 4개 일치, 5개 일치, 5개+보너스, 6개 일치
 
     int matchCount = 0;
     int bonusCount = 0;
 
+    // 당첨 결과 계산
     for (Lotto lotto : lottoSet) {
       for (int lottoNum : lotto.getNumbers()) {
         if (winningNumbers.contains(lottoNum)) {
@@ -40,7 +45,7 @@ public class LottoService {
         }
       }
 
-      // winingResult 업데이트
+      // 당첨결과 업데이트
       if (matchCount == 3) {
         winingResult[0]++;
       } else if (matchCount == 4) {
@@ -59,6 +64,7 @@ public class LottoService {
     return winingResult;
   }
 
+  // 전체 당첨금 계산
   public static int getTotalPrize(int[] winingResult) {
     return winingResult[0] * 5000 +   // 3개 일치
         winingResult[1] * 50000 +     // 4개 일치

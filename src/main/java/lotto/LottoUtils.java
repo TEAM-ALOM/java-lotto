@@ -4,8 +4,18 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+// verify service
 public class LottoUtils {
-  public static void validateLottoNumbers(List<Integer> numbers) {
+
+  // 로또 개별 번호 검증
+  public static void verifyLottoNumber(int lottoNum) {
+    if (!(1 <= lottoNum && lottoNum <= 45)) {
+      throw new IllegalArgumentException("[ERROR] 로또번호는 1부터 45사이의 숫자여야합니다.");
+    }
+  }
+
+  //
+  public static void verifyLottoNumbers(List<Integer> numbers) {
     // 개수 검증
     if (numbers.size() != 6) {
       throw new IllegalArgumentException("[ERROR] 로또번호는 6개여야 합니다.");
@@ -16,16 +26,7 @@ public class LottoUtils {
     if( setNumbers.size() != numbers.size()){
       throw new IllegalArgumentException("[ERROR] 로또번호는 중복될 수 없습니다.");
     }
-  }
-
-  public static void verifyLottoNumber(int lottoNum) {
-    if (!(1 <= lottoNum && lottoNum <= 45)) {
-      throw new IllegalArgumentException("[ERROR] 로또번호는 1부터 45사이의 숫자여야합니다.");
-    }
-  }
-
-  public static void verifyLottoNumbers(List<Integer> winingNumbers) {
-    for (int lottoNum : winingNumbers) {
+    for (int lottoNum : numbers) {
       verifyLottoNumber(lottoNum);
     }
   }

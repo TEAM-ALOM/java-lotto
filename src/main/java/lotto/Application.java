@@ -25,7 +25,7 @@ public class Application {
             .collect(Collectors.toList());
         LottoUtils.verifyLottoNumbers(winningNumbers);
 
-        // 보너스 번호 받기
+        // 보너스 번호 입력 받기
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusWinningNumber = Integer.parseInt(Console.readLine());
         LottoUtils.verifyLottoNumber(bonusWinningNumber);
