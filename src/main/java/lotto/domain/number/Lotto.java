@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain.number;
 
 import java.util.List;
 
@@ -12,9 +12,12 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 원소의 개수가 6개가 아닙니다.");
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+// TODO: 추가 기능 구현
 }
