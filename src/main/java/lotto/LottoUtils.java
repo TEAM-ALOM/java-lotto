@@ -14,7 +14,7 @@ public class LottoUtils {
     }
   }
 
-  //
+  // 로또 숫자 리스트 검증
   public static void verifyLottoNumbers(List<Integer> numbers) {
     // 개수 검증
     if (numbers.size() != 6) {
@@ -31,7 +31,8 @@ public class LottoUtils {
     }
   }
 
-  public static int verifyPurchaseAmount(String purchaseAmountString) {
+  // 구매금액 String 검증 후 int로 반환
+  public static int verifyPurchaseAmountString(String purchaseAmountString) {
     try {
       int purchaseAmount = Integer.parseInt(purchaseAmountString);
 

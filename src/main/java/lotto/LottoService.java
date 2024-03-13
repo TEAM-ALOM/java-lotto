@@ -1,8 +1,8 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import org.kokodak.Randoms;
 
 // service
 public class LottoService {

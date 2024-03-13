@@ -1,9 +1,9 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.kokodak.Console;
 
 // controller
 public class Application {
@@ -12,7 +12,7 @@ public class Application {
         // 구입금액 입력 받기
         System.out.println("구입금액을 입력해 주세요.");
         String purchaseAmountString = Console.readLine();
-        int purchaseAmount = LottoUtils.verifyPurchaseAmount(purchaseAmountString);
+        int purchaseAmount = LottoUtils.verifyPurchaseAmountString(purchaseAmountString);
 
         // 구입한 로또 구매
         List<Lotto> lottoSet = LottoService.purchaseLotto(purchaseAmount);
