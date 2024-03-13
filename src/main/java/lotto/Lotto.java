@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
-    Application application = new Application();
 
 
     public Lotto(List<Integer> numbers) {
@@ -24,10 +23,6 @@ public class Lotto {
 
     public void sortNumbers(){
         Collections.sort(this.numbers);
-    }
-
-    public void printNumbers(){
-        System.out.println(numbers);
     }
 
 }
