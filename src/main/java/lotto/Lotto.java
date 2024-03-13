@@ -25,8 +25,4 @@ public class Lotto {
         Collections.sort(this.numbers);
     }
 
-    public void printNumbers(){
-        System.out.println(numbers);
-    }
-
 }
