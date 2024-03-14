@@ -66,4 +66,8 @@ public class LottoGenerator {
     public List<Lotto> getLottos() {
         return lottos;
     }
+
+    public int getLOTTO_PER_PRICE() {
+        return LOTTO_PER_PRICE;
+    }
 }
