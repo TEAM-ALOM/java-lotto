@@ -1,59 +1,49 @@
 package lotto.controller;
 
-import lotto.domain.LottoGame;
 import lotto.domain.betting.Betting;
-import lotto.domain.number.Lotto;
+import lotto.domain.number.LottoArray;
 import lotto.domain.number.LottoMachine;
-import lotto.domain.participant.WinningNumbers;
+import lotto.domain.number.WinningNumbers;
+import lotto.domain.result.EarningsRate;
+import lotto.domain.result.MatchedPlace;
+import lotto.domain.result.Result;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
-
-    private final InputView inputView;
-    private final OutputView outputView;
-
-    public LottoController(final InputView inputView, final OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
-    }
-
     public void run() {
         final Betting betting = new Betting(getBetting());
-        ArrayList<Lotto> lotto = getLottoNumbers(betting);
-        outputView.printLotto(lotto);
+        final int amount = betting.getAmount();
+        LottoMachine lottoMachine = new LottoMachine(amount);
+        LottoArray lottoArray = new LottoArray(lottoMachine.createLottoArray());
+        printLotto(lottoMachine, lottoArray);
+
         final WinningNumbers winningNumbers =
                 new WinningNumbers(getWinningArray(),getBonusNumber());
-        final LottoGame lottoGame = startLottoGame(lotto, winningNumbers, betting);
-
+        Map<MatchedPlace, Integer> matchedDetails = Result.getMatchedDetails(lottoArray, winningNumbers);
+        printResult(matchedDetails,amount);
     }
     private String getBetting() {
-        return inputView.readMoney();
+        return InputView.readMoney();
     }
     private List<Integer> getWinningArray() {
-        return inputView.readWinningArray();
+        return InputView.readWinningArray();
     }
     private String getBonusNumber() {
-        return inputView.readBonusNumber();
+        return InputView.readBonusNumber();
+    }
+    private void printLotto(LottoMachine lottoMachine,LottoArray lottoArray) {
+        OutputView.printLottoTicketNumber(lottoMachine.getTicketNumber());
+        OutputView.printLotto(lottoArray);
     }
 
-    private ArrayList<Lotto> getLottoNumbers(Betting betting) {
-        ArrayList<Lotto> list = new ArrayList<>();
-        final int cnt = betting.getTicketNumber();
-        for(int i=0; i<cnt; i++){
-            list.add(LottoMachine.createNumbers());
-        }
-        return list;
+    private void printResult(Map<MatchedPlace, Integer> matchedDetails, int amount) {
+        OutputView.printStatistics();
+        OutputView.printMatchedDetails(matchedDetails);
+        long winningAmount = EarningsRate.getEarning(matchedDetails);
+        OutputView.printEarningsRate(EarningsRate.getEarningsRate(winningAmount, amount));
     }
-    private LottoGame startLottoGame(final ArrayList<Lotto> lotto,
-                                     final WinningNumbers winningNumbers,
-                                             final Betting betting) {
-        final LottoGame lottoGame = new LottoGame(lotto, winningNumbers, betting);
-        //outputView.printDealCards(dealerResponse, playerResponses, INIT_DRAW_COUNT);
-        return lottoGame;
-    }
-
 }

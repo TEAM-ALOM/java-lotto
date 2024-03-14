@@ -2,42 +2,41 @@
 
 로또 미션 저장소
 
+<!--
 ## 도메인 다이어그램
+-->
 
-```mermaid
-graph TD
-    LottoController --> InputView
-    LottoController --> OutputView
-    LottoController --> LottoGame
+[//]: # (```mermaid)
 
-    LottoGame --> Lotto
-    LottoGame --> WinningNumbers
-    LottoGame --> LottoMachine
+[//]: # (graph TD)
 
-```
+[//]: # (    LottoController --> InputView)
+
+[//]: # (    LottoController --> OutputView)
+
+[//]: # (    LottoController --> LottoGame)
+
+[//]: # ()
+[//]: # (    LottoGame --> Lotto)
+
+[//]: # (    LottoGame --> WinningNumbers)
+
+[//]: # (    LottoGame --> LottoMachine)
+
+[//]: # ()
+[//]: # (```)
+
 
 ## 기능 구현 목록
-
-### LottoGame
-
-- [x] 로또 숫자와 참가자들을 관리한다.
-
-### 결과
-
-- [x] 결과를 관리한다
 
 ### Lotto
 
 - [x] 로또 번호를 저장한다
-- [x] 결과를 반환한다?
-- [x] 점수를 계산한다?
-- [x] 당첨 번호와 비교?
 
 ### WinningNumbers
 
-- [x] 당첨 번호를 입력받는다
-- [x] 보너스 번호를 입력받는다
-- [x] 결과를 반환한다
+- [x] 당첨 번호를 저장한다
+- [x] 보너스 번호를 저장한다
 
 ### LottoMachine
 
