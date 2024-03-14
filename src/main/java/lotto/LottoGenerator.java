@@ -9,7 +9,8 @@ public class LottoGenerator {
     private final int LOWEST_LOTTO_NUMBER = 1;
     private final int HIGHEST_LOTOO_NUMBER = 45;
     private final int ZERO = 0;
-    private final String ONLY_PURCHASE_AMOUNT_IS_UNITS_OF_ONT_THOUSAND = "[ERROR] 구매 금액은 1000단위로만 받을 수 있습니다.";
+
+    private static final String ONLY_PURCHASE_AMOUNT_IS_UNITS_OF_ONT_THOUSAND = "[ERROR] 구매 금액은 1000단위로만 받을 수 있습니다.";
 
     private final List<Lotto> lottos = new ArrayList<>();
     private final int lottoQuantity;
@@ -60,4 +61,5 @@ public class LottoGenerator {
     public int getLottoQuantity() {
         return lottoQuantity;
     }
+
 }
