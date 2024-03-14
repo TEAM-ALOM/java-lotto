@@ -92,7 +92,7 @@ public class Start {
     }
 
 
-    private void ResultStatistics(int LottoAmount){
+    private void ResultStatistics(int LottoAmount){ //로또 최종 통계 출력
         int ResultMoney = FIRST*2000000000 + SECOND*30000000 + THIRD*1500000 + FORTH*50000 + FIVTH*5000;
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -101,6 +101,6 @@ public class Start {
         System.out.println("5개 일치 (1,500,000원) - "+THIRD+"개");
         System.out.println("5개 일치, 보너스 볼 일치(30,000,000원) - "+SECOND+"개");
         System.out.println("6개 일치 (2,000,000,000원) - "+FIRST+"개");
-        System.out.println("총 수익률은"+getRateOfReturn(ResultMoney,LottoAmount*1000)+"% 입니다");
+        System.out.println("총 수익률은 "+getRateOfReturn(ResultMoney,LottoAmount*1000)+"% 입니다");
     }
 }
