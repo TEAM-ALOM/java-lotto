@@ -3,8 +3,13 @@ package domain;
 import domain.LottoGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 class LottoGeneratorTest {
     // 올바른 단위에 금액인지( 1000단위인지, 양수의 금액인지)
@@ -32,6 +37,22 @@ class LottoGeneratorTest {
                 .hasMessageContaining("[ERROR]");
 
 
+    }
+
+    @Test
+    @DisplayName("로또 발행하기를 통해 생성된 로또 번호는 오름차순 정렬이 되어 있습니다.")
+    void sortLottoNumbers(){
+        int money = 3000;
+        LottoGenerator lottoGenerator = new LottoGenerator(money);
+        lottoGenerator.createLottos();
+        lottoGenerator.getLottos().stream().
+                forEach(lotto -> org.junit.jupiter.api.Assertions.assertTrue(isAscendingOrder(lotto.getNumbers())));
+
+    }
+    private boolean isAscendingOrder(List<Integer> arrayList) {
+        ArrayList<Integer> sortedList = new ArrayList<>(arrayList);
+        Collections.sort(sortedList);
+        return sortedList.equals(arrayList);
     }
 
 }
