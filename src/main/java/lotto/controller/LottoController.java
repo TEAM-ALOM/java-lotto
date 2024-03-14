@@ -21,9 +21,10 @@ public class LottoController {
         this.outputView = outputView;
     }
 
-    public void start() {
+    public void run() {
         final Betting betting = new Betting(getBetting());
         ArrayList<Lotto> lotto = getLottoNumbers(betting);
+        outputView.printLotto(lotto);
         final WinningNumbers winningNumbers =
                 new WinningNumbers(getWinningArray(),getBonusNumber());
         final LottoGame lottoGame = startLottoGame(lotto, winningNumbers, betting);
@@ -51,8 +52,6 @@ public class LottoController {
                                      final WinningNumbers winningNumbers,
                                              final Betting betting) {
         final LottoGame lottoGame = new LottoGame(lotto, winningNumbers, betting);
-        //final LottoResponse lottoResponse = LottoResponse.from(lottoGame);
-        //final List<ParticipantResponse> playerResponses = getPlayerResponses(blackJackGame.players());
         //outputView.printDealCards(dealerResponse, playerResponses, INIT_DRAW_COUNT);
         return lottoGame;
     }

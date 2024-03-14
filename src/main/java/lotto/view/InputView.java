@@ -17,12 +17,14 @@ public class InputView {
         return Console.readLine();
     }
     public List<Integer> readWinningArray() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         final String input = Console.readLine();
 
         return Parser.parseByDelimiter(input,",");
     }
     public String readBonusNumber() {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         return Console.readLine();
     }

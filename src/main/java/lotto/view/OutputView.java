@@ -1,16 +1,17 @@
 package lotto.view;
 
-import lotto.view.dto.LottoResponse;
+import lotto.domain.number.Lotto;
 
 import java.util.List;
 
 import static java.text.MessageFormat.format;
 
 public class OutputView {
-//    private void printLottoNumbers(final LottoResponse dealer) {
-//        final LottoResponse cards = dealer.getCardsResponse();
-//        final List<String> cardInfos = cards.getCardInfos();
-//
-//        System.out.println(format("{0}카드: {1}", dealer.getName(), cardInfos.get(0)));
-//    }
+    public void printLotto(final List<Lotto> lotto) {
+        System.out.println();
+        System.out.println(lotto.size()+"개를 구매했습니다.");
+        for(Lotto c:lotto){
+            System.out.println(c.getNumbers());
+        }
+    }
 }
