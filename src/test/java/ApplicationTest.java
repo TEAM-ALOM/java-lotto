@@ -1,5 +1,3 @@
-package lotto;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.kokodak.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.kokodak.test.Assertions.assertSimpleTest;

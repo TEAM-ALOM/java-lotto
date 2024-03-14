@@ -56,4 +56,8 @@ public class LottoGenerator {
 
     // 각 로또 번호는 1부터 45까지의 숫자 중에서 중복되지 않는 번호로 구성됩니다.
     // 생성된 로또 번호는 오름차순으로 정렬됩니다.
+
+    public int getLottoQuantity() {
+        return lottoQuantity;
+    }
 }
