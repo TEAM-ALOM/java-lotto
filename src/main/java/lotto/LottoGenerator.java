@@ -1,10 +1,13 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.kokodak.Randoms;
+
+import java.util.*;
 
 public class LottoGenerator {
     private final int LOTTO_PER_PRICE = 1000;
+    private final int LOWEST_LOTTO_NUMBER = 1;
+    private final int HIGHEST_LOTOO_NUMBER = 45;
     private final int ZERO = 0;
     private final String ONLY_PURCHASE_AMOUNT_IS_UNITS_OF_ONT_THOUSAND = "[ERROR] 구매 금액은 1000단위로만 받을 수 있습니다.";
 
@@ -31,7 +34,25 @@ public class LottoGenerator {
     }
 
     // 사용자가 입력한 금액에 맞는 로또 개수를 생성합니다.
+    public void createLottos(){
+        for(int i=0; i<lottoQuantity; i++){
+            Lotto lotto = createLotto();
+            lottos.add(lotto);
+        }
+    }
 
+    private Lotto createLotto() {
+        HashSet<Integer> integers = new HashSet<>();
+
+        while (integers.size() != 6){
+            int lottoNumber = Randoms.pickNumberInRange(LOWEST_LOTTO_NUMBER, HIGHEST_LOTOO_NUMBER);
+            integers.add(lottoNumber);
+        }
+        ArrayList<Integer> numbers = new ArrayList<>(integers);
+        Collections.sort(numbers);
+
+        return new Lotto(numbers);
+    }
 
     // 각 로또 번호는 1부터 45까지의 숫자 중에서 중복되지 않는 번호로 구성됩니다.
     // 생성된 로또 번호는 오름차순으로 정렬됩니다.
