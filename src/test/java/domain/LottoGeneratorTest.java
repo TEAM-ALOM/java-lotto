@@ -1,12 +1,10 @@
-package lotto;
+package domain;
 
+import domain.LottoGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoGeneratorTest {
     // 올바른 단위에 금액인지( 1000단위인지, 양수의 금액인지)

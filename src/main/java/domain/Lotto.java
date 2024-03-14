@@ -1,4 +1,4 @@
-package lotto;
+package domain;
 
 import java.util.HashSet;
 import java.util.List;
@@ -25,4 +25,5 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호가 중복되었습니다.");
         }
     }
+
 }

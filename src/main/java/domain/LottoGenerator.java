@@ -1,5 +1,6 @@
-package lotto;
+package domain;
 
+import domain.Lotto;
 import org.kokodak.Randoms;
 
 import java.util.*;
