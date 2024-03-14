@@ -62,4 +62,7 @@ public class LottoGenerator {
         return lottoQuantity;
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

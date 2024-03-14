@@ -17,7 +17,7 @@ class LottoGeneratorTest {
     @ParameterizedTest
     @ValueSource(ints = {1000, 3000, 10000, 240000, 5000000})
     @DisplayName("구매 금액은 1000원 단위로 나눠 떨어져야합니다.")
-    void lottoGeneratorSuccessTest1(int money){
+    void lottoGeneratorSuccessTest(int money){
         //when
         LottoGenerator lottoGenerator = new LottoGenerator(money);
         int lottoQuantity = lottoGenerator.getLottoQuantity();
@@ -28,7 +28,7 @@ class LottoGeneratorTest {
     @ParameterizedTest // 여러 값은 한 번에 테스트할 수 있게 해줌
     @ValueSource(ints = {-1000, -1500, 0, 2400, 45602})
     @DisplayName("구매 금액은 1000원 단위로 나눠 떨어지지 않거나, 0보다 작거나 같으면 실패합니다.")
-    void lottoGeneratorSuccessTest2(int money){
+    void lottoGeneratorFailTest(int money){
         Assertions.assertThatThrownBy(() -> new LottoGenerator(money))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
