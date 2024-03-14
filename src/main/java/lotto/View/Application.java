@@ -1,10 +1,6 @@
-package lotto;
+package lotto.View;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import lotto.Controller.Start;
 
 public class Application {
 
