@@ -42,21 +42,17 @@ public class Start {
             int Count = getResult(LottoList,WinningLotto);
             setResult(Count,WinningLotto,BonusNum); }
 
-        /*
-        System.out.println("FIRST = "+FIRST);
-        System.out.println("SECOND = "+SECOND);
-        System.out.println("THIRD = "+THIRD);
-        System.out.println("FORTH = "+FORTH);
-        System.out.println("FIVTH = "+FIVTH);
-         */
+
 
         int ResultMoney = FIRST*2000000000 + SECOND*30000000 + THIRD*1500000 + FORTH*50000 + FIVTH*5000;
+
 
         /*
         System.out.println("ResultMoney : "+ResultMoney);
         System.out.println("LottoMoney : "+LottoMoney);
         */
 
+        ResultStatistics(); //결과 출력
         System.out.println("수익률 : "+getRateOfReturn(ResultMoney,LottoMoney)+"%");
 
 
@@ -114,5 +110,13 @@ public class Start {
     }
 
 
-
+    private void ResultStatistics(){
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - "+FIVTH+"개");
+        System.out.println("4개 일치 (50,000원) - "+FORTH+"개");
+        System.out.println("5개 일치 (1,500,000원) - "+THIRD+"개");
+        System.out.println("5개 일치, 보너스 볼 일치(30,000,000원) - "+SECOND+"개");
+        System.out.println("6개 일치 (2,000,000,000원) - "+FIRST+"개");
+    }
 }
