@@ -10,7 +10,7 @@ public class Betting {
     }
 
     private void validateInteger(final String input) {
-        if (!input.matches("[+-]?\\d*(\\.\\d+)?")) {
+        if (!(input.matches("[+-]?\\d*(\\.\\d+)?"))) {
             throw new IllegalArgumentException(NOT_A_NUMBER);
         }
     }
