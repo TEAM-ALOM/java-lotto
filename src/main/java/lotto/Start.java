@@ -16,8 +16,7 @@ public class Start {
         InOut inOut = new InOut();
         LottoResult lottoResult = new LottoResult();
 
-        int LottoMoney = inOut.InLottoMoney(); //투입 금액 입력
-        int LottoAmount = LottoMoney/1000; //로또 개수 확인
+        int LottoAmount =inOut.InLottoMoney()/1000; //로또 개수 확인
 
         List<List> myRandomLottoList = new ArrayList<>();
         myRandomLottoList = setRandomLottoList(LottoAmount); //LottoAmount 개의 랜덤 로또 번호 생성
@@ -31,29 +30,12 @@ public class Start {
         List<Integer> WinningLotto = inOut.InWinningLotto(); //로또 당첨 번호 입력
         int BonusNum = inOut.InBonusNum(); //보너스 번호 입력
 
-        /*
-        System.out.println("로또 개수 : "+LottoAmount);
-        System.out.println("당첨 로또 번호:"+WinningLotto);
-        System.out.println("보너스 로또 번호 : "+BonusNum);
-        */
-
-
         for(List<Integer> LottoList : myRandomLottoList){ //로또 당첨 결과 설정
             int Count = getResult(LottoList,WinningLotto);
             setResult(Count,WinningLotto,BonusNum); }
 
+        ResultStatistics(LottoAmount); //결과 출력
 
-
-        int ResultMoney = FIRST*2000000000 + SECOND*30000000 + THIRD*1500000 + FORTH*50000 + FIVTH*5000;
-
-
-        /*
-        System.out.println("ResultMoney : "+ResultMoney);
-        System.out.println("LottoMoney : "+LottoMoney);
-        */
-
-        ResultStatistics(); //결과 출력
-        System.out.println("수익률 : "+getRateOfReturn(ResultMoney,LottoMoney)+"%");
 
 
 
@@ -110,7 +92,8 @@ public class Start {
     }
 
 
-    private void ResultStatistics(){
+    private void ResultStatistics(int LottoAmount){
+        int ResultMoney = FIRST*2000000000 + SECOND*30000000 + THIRD*1500000 + FORTH*50000 + FIVTH*5000;
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - "+FIVTH+"개");
@@ -118,5 +101,6 @@ public class Start {
         System.out.println("5개 일치 (1,500,000원) - "+THIRD+"개");
         System.out.println("5개 일치, 보너스 볼 일치(30,000,000원) - "+SECOND+"개");
         System.out.println("6개 일치 (2,000,000,000원) - "+FIRST+"개");
+        System.out.println("총 수익률은"+getRateOfReturn(ResultMoney,LottoAmount*1000)+"% 입니다");
     }
 }
