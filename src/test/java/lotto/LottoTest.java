@@ -47,10 +47,53 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
+    @Test
+    @DisplayName("당첨 번호가 6개가 아닐 경우 실패")
+    void winningNumbersSizeIsNotSixTest() {
+        List<Integer> winningNumbers1 = List.of(1, 2, 3, 4, 5);
+        List<Integer> winningNumbers2 = List.of(1, 2, 3);
+        List<Integer> winningNumbers3 = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        List<Integer> winningNumbers4 = List.of();
+        String bonusNumber = "45";
+
+        assertThatThrownBy(() -> new WinningNumbers(winningNumbers1, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+        assertThatThrownBy(() -> new WinningNumbers(winningNumbers2, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+        assertThatThrownBy(() -> new WinningNumbers(winningNumbers3, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+        assertThatThrownBy(() -> new WinningNumbers(winningNumbers4, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"-4", "0", "46", "101", "-45"})
+    @DisplayName("보너스 번호에 1~45의 범위를 벗어나는 수가 들어올 경우 실패")
+    void bonusNumberOutsideTheRangeOfOneToFortyFiveTest(String bonusNumber) {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        assertThatThrownBy(() -> new WinningNumbers(winningNumbers, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
 
     @Test
+    @DisplayName("당첨 번호와 보너스 번호가 중복될 경우 실패")
+    void duplicateWinningNumberAndBonusNumberTest() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 45);
+        String bonusNumber = "3";
+
+        assertThatThrownBy(() -> new WinningNumbers(winningNumbers, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+    @Test
     @DisplayName("당첨 번호 일치 개수와 보너스 번호 일치 여부를 통해서 당첨 등수를 구한다.")
-    void findWinningRankTest() {
+    void findPlaceTest() {
         MatchedPlace winningRank1 = MatchedPlace.findPlace(0, false);
         MatchedPlace winningRank2 = MatchedPlace.findPlace(1, false);
         MatchedPlace winningRank3 = MatchedPlace.findPlace(2, false);
