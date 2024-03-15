@@ -55,7 +55,7 @@ public class Application {
         int[] correctCnt = new int[]{0, 0, 0, 0};
         int bonusCnt = 0;
 
-        for (List<Integer> lottoNumbers : purchasedLottoNum)   // 바꿔볼까
+        for (List<Integer> lottoNumbers : purchasedLottoNum)
         {
             int cnt = 0;
             for (int j : userSelectedNum)
