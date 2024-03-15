@@ -31,4 +31,9 @@ public enum WinningRank {
     public int getWinnerlottoPrice() {
         return WinnerlottoPrice;
     }
+
+    public int getMatchingCount() {
+        return matchingCount;
+    }
+
 }
