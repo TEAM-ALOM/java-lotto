@@ -27,4 +27,8 @@ public enum WinningRank {
                 .findFirst()
                 .orElse(WinningRank.LAST_PLACE);
     }
+
+    public int getWinnerlottoPrice() {
+        return WinnerlottoPrice;
+    }
 }

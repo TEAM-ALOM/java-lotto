@@ -12,7 +12,8 @@ public class LottoStatics {
      * 총 수익률 판별 - (로또 구매 금액 - 당첨 금액 합계) / 로또 구매 금액 * 100
      */
 
-    private final int INITAIL_NUMBER = 0;
+    private static final int INITAIL_NUMBER = 0;
+    private static final int PERCENT = 100;
 
 
     public Map<WinningRank, Integer> getWinningDetails(Lottos lottos, LottoWinnerNumber lottoWinnerNumber){
@@ -50,5 +51,17 @@ public class LottoStatics {
             }
         }
         return count;
+    }
+
+    public static long getTotalWinnnerAmount(Map<WinningRank, Integer> winningDetails){
+
+        return winningDetails.entrySet().stream()
+                .mapToLong(entry -> (long) entry.getKey().getWinnerlottoPrice() * entry.getValue())
+                .sum();
+    }
+
+    public static double getLottoReturn(long totalWinnerAmount, int purchaseAmount){
+        double result = (purchaseAmount - totalWinnerAmount) / totalWinnerAmount * PERCENT;
+        return Math.round(result * 10) / 10.0;
     }
 }
