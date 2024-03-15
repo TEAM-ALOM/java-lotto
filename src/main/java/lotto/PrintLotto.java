@@ -15,4 +15,5 @@ public class PrintLotto {
         System.out.println("6개 일치 (2,000,000,000원) - "+stateArray[4]+"개");
         System.out.println("총 수익률은" +result +"%입니다.");
     }
+
 }

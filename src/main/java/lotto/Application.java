@@ -46,5 +46,4 @@ public class Application {
         }
         return lottoNumbers;
     }
-
 }

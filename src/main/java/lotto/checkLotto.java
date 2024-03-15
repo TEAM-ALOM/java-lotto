@@ -25,7 +25,6 @@ public class checkLotto {
                 return 3;
             return n-3;
         }
-
         return 9;
     }
 }
