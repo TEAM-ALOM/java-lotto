@@ -15,16 +15,21 @@ import java.util.Map;
 
 public class LottoController {
     public void run() {
-        final Betting betting = new Betting(getBetting());
-        final int amount = betting.getAmount();
-        LottoMachine lottoMachine = new LottoMachine(amount);
-        LottoArray lottoArray = new LottoArray(lottoMachine.createLottoArray());
-        printLotto(lottoMachine, lottoArray);
+        try{
+            final Betting betting = new Betting(getBetting());
+            final int amount = betting.getAmount();
+            LottoMachine lottoMachine = new LottoMachine(amount);
+            LottoArray lottoArray = new LottoArray(lottoMachine.createLottoArray());
+            printLotto(lottoMachine, lottoArray);
 
-        final WinningNumbers winningNumbers =
-                new WinningNumbers(getWinningArray(),getBonusNumber());
-        Map<MatchedPlace, Integer> matchedDetails = Result.getMatchedDetails(lottoArray, winningNumbers);
-        printResult(matchedDetails,amount);
+            final WinningNumbers winningNumbers =
+                    new WinningNumbers(getWinningArray(),getBonusNumber());
+            Map<MatchedPlace, Integer> matchedDetails = Result.getMatchedDetails(lottoArray, winningNumbers);
+            printResult(matchedDetails,amount);
+        }catch(IllegalArgumentException e) {
+            System.out.println((e.getMessage()));
+        }
+
     }
     private String getBetting() {
         return InputView.readMoney();

@@ -1,11 +1,9 @@
 package lotto.view;
 
-import lotto.domain.number.Lotto;
 import lotto.domain.number.LottoArray;
 import lotto.domain.result.MatchedPlace;
 
 import java.text.DecimalFormat;
-import java.util.List;
 import java.util.Map;
 
 public class OutputView {
