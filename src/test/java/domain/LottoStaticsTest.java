@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Map;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoStaticsTest {
@@ -31,11 +32,11 @@ class LottoStaticsTest {
         Map<WinningRank, Integer> winningDetails = LottoStatics.getWinningDetails(lottos, lottoWinnerNumber);
 
         //then
-        Assertions.assertThat(winningDetails.get(WinningRank.LAST_PLACE)).isEqualTo(3);  // 0 ~ 2 개
-        Assertions.assertThat(winningDetails.get(WinningRank.FIFTH_PLACE)).isEqualTo(1); //3개
-        Assertions.assertThat(winningDetails.get(WinningRank.THIRD_PLACE)).isEqualTo(1); // 5개
-        Assertions.assertThat(winningDetails.get(WinningRank.SECOND_PLACE)).isEqualTo(1); // 5개 + 보너스
-        Assertions.assertThat(winningDetails.get(WinningRank.FIRST_PLACE)).isEqualTo(1); // 6개
+        assertThat(winningDetails.get(WinningRank.LAST_PLACE)).isEqualTo(3);  // 0 ~ 2 개
+        assertThat(winningDetails.get(WinningRank.FIFTH_PLACE)).isEqualTo(1); //3개
+        assertThat(winningDetails.get(WinningRank.THIRD_PLACE)).isEqualTo(1); // 5개
+        assertThat(winningDetails.get(WinningRank.SECOND_PLACE)).isEqualTo(1); // 5개 + 보너스
+        assertThat(winningDetails.get(WinningRank.FIRST_PLACE)).isEqualTo(1); // 6개
     }
 
     @Test
@@ -53,7 +54,20 @@ class LottoStaticsTest {
         //when
         long totalWinnnerAmount = LottoStatics.getTotalWinnnerAmount(winningDetails);
         //then
-        Assertions.assertThat(totalWinnnerAmount).isEqualTo(result);
+        assertThat(totalWinnnerAmount).isEqualTo(result);
+    }
+
+    @Test
+    @DisplayName("당첨 내역을 이용해 수익률을 구한다.")
+    void getLottoReturn() {
+        double lottoYield;
+
+        lottoYield = LottoStatics.
+                getLottoReturn(8000, 5000);
+        assertThat(lottoYield).isEqualTo(60.0);
+
+        lottoYield = LottoStatics.getLottoReturn(125000, 525000);
+        assertThat(lottoYield).isEqualTo(-76.2);
     }
 
 }

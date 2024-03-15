@@ -54,7 +54,8 @@ public class LottoStatics {
     }
 
     public static double getLottoReturn(long totalWinnerAmount, int purchaseAmount){
-        double result = (purchaseAmount - totalWinnerAmount) / totalWinnerAmount * PERCENT;
+        double result = (double) (totalWinnerAmount - purchaseAmount) / purchaseAmount * PERCENT;
+
         return Math.round(result * 10) / 10.0;
     }
 }
