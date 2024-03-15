@@ -17,19 +17,19 @@ public class LottoController {
             lottoGenerator.createLottos(); // 로또 발행하기
             Lottos lottos = new Lottos(lottoGenerator.getLottos());
             Output.outputLottosNumbers(lottos); // 뽑은 로또 모든 번호 출력
-
-            List<Integer> winnerNumbers = Input.inputWinnerNumbers();//
-            int bonusNumber = Input.inputBonusNumber();
-            LottoWinnerNumber lottoWinnerNumber = new LottoWinnerNumber(winnerNumbers, bonusNumber);
-
+            LottoWinnerNumber lottoWinnerNumber = getLottoWinnerNumber();
             Map<WinningRank, Integer> winningDetails = LottoStatics.getWinningDetails(lottos, lottoWinnerNumber);
-
-
             Output.outputWinnerStatics(winningDetails, purchaseAmount);
 
         }catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    private static LottoWinnerNumber getLottoWinnerNumber() {
+        List<Integer> winnerNumbers = Input.inputWinnerNumbers(); //
+        int bonusNumber = Input.inputBonusNumber();
+        LottoWinnerNumber lottoWinnerNumber = new LottoWinnerNumber(winnerNumbers, bonusNumber);
+        return lottoWinnerNumber;
     }
 }

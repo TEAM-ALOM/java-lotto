@@ -40,10 +40,10 @@ public class Output {
     public static void outputWinnerStatics(Map<WinningRank, Integer> winningDetails, int purchaseAmount){
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println(WinningRank.FIFTH_PLACE.getMatchingCount() + "개 일치 (5,000원) - " + winningDetails.get(WinningRank.FIRST_PLACE));
-        System.out.println(WinningRank.FOURTH_PLACE.getMatchingCount() + "개 일치 (50,000원) - " + winningDetails.get(WinningRank.FIRST_PLACE));
-        System.out.println(WinningRank.THIRD_PLACE.getMatchingCount() + "개 일치 (1,500,000원) - " + winningDetails.get(WinningRank.FIRST_PLACE));
-        System.out.println(WinningRank.SECOND_PLACE.getMatchingCount() + "개 일치 (30,000,000원) - " + winningDetails.get(WinningRank.FIRST_PLACE));
+        System.out.println(WinningRank.FIFTH_PLACE.getMatchingCount() + "개 일치 (5,000원) - " + winningDetails.get(WinningRank.FIFTH_PLACE));
+        System.out.println(WinningRank.FOURTH_PLACE.getMatchingCount() + "개 일치 (50,000원) - " + winningDetails.get(WinningRank.FOURTH_PLACE));
+        System.out.println(WinningRank.THIRD_PLACE.getMatchingCount() + "개 일치 (1,500,000원) - " + winningDetails.get(WinningRank.THIRD_PLACE));
+        System.out.println(WinningRank.SECOND_PLACE.getMatchingCount() + "개 일치 (30,000,000원) - " + winningDetails.get(WinningRank.SECOND_PLACE));
         System.out.println(WinningRank.FIRST_PLACE.getMatchingCount() + "개 일치 (2,000,000,000원) - " + winningDetails.get(WinningRank.FIRST_PLACE));
         System.out.println("총 수익률은 " + LottoStatics.getLottoReturn(LottoStatics.getTotalWinnnerAmount(winningDetails), purchaseAmount) + "%입니다.");
 
