@@ -25,4 +25,8 @@ public class WinPriceNumber {
         return numbers;
     }
 
+    public static int getLottoBonusNumber() {
+        System.out.println(LOTTO_BONUS_NUMBER_MESSAGE);
+        return Integer.parseInt(readLine());
+    }
 }
