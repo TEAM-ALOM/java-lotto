@@ -62,6 +62,13 @@ public class LottoWinnerNumber {
         return true;
     }
 
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
     // 로또 번호 개수는 6개
     // 로또 번호는 1 ~ 45 인 숫자
     // 로또 번호는 중복 X

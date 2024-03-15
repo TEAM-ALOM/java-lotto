@@ -15,6 +15,16 @@ public class LottoStatics {
     private final int INITAIL_NUMBER = 0;
 
 
+    public Map<WinningRank, Integer> getWinningDetails(Lottos lottos, LottoWinnerNumber lottoWinnerNumber){
+        Map<WinningRank, Integer> winnerDetails = createWinnerDetails();
+        for(Lotto lotto : lottos.getLottos()){
+            int matchCount = countMatchingNumbers(lottoWinnerNumber, lotto);
+            boolean containsBonusNumber = hasBonusNumber(lottoWinnerNumber.getBonusNumber(), lotto);
+            WinningRank winningRank = WinningRank.findWinningRank(matchCount, containsBonusNumber);
+            winnerDetails.replace(winningRank, winnerDetails.get(winningRank) + 1);
+        }
+        return winnerDetails;
+    }
     public Map<WinningRank, Integer> createWinnerDetails() {
         Map<WinningRank, Integer> winnerDetails = new EnumMap<>(WinningRank.class);
         Arrays.stream(WinningRank.values()).forEach(winningRank -> winnerDetails.put(winningRank, INITAIL_NUMBER));
@@ -22,25 +32,20 @@ public class LottoStatics {
         return winnerDetails;
     }
 
-    private WinningRank getWinningRank(List<Integer> lottoWinnerNumbers, int bonusNumber, List<Integer> lotto) {
-        int count = countMatchingNumbers(lottoWinnerNumbers, lotto);
-        boolean result = hasBonusNumber(bonusNumber, lotto);
-
-        return WinningRank.findWinningRank(count, result);
-    }
-
-    private boolean hasBonusNumber(int bonusNumber, List<Integer> lotto) {
+    private boolean hasBonusNumber(int bonusNumber, Lotto lotto) {
         boolean contaisBonusNumber = false;
-        if(lotto.contains(bonusNumber)){
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        if(lottoNumbers.contains(bonusNumber)){
             contaisBonusNumber = true;
         }
         return contaisBonusNumber;
     }
 
-    private int countMatchingNumbers(List<Integer> lottoWinnerNumbers, List<Integer> lotto) {
+    private int countMatchingNumbers(LottoWinnerNumber lottoWinnerNumber, Lotto lotto) {
         int count = 0;
-        for(int i = 0; i< lotto.size(); i++){
-            if(lotto.contains(lottoWinnerNumbers.get(i))){
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        for(int i = 0; i< lottoNumbers.size(); i++){
+            if(lottoNumbers.contains(lottoWinnerNumber.getWinningNumbers().get(i))){
                 count++;
             }
         }
