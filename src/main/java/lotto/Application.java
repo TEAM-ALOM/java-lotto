@@ -1,19 +1,30 @@
 package lotto;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        System.out.println("구입금액을 입력해 주세요.");
 
-        Scanner s = new Scanner(System.in);
+        List<Integer> lottoNumbers = new ArrayList<>();
 
-        int PriceAmount = s.nextInt();
+        for (int i = 0; i < 7; i++) {
+            int number = generateUniqueRandomNumber(lottoNumbers);
+            lottoNumbers.add(number);
+        }
 
-        PriceAmount = PriceAmount / 1000;
+        Lotto lotto = new Lotto(lottoNumbers);
 
-        System.out.println(PriceAmount + "개를 구매했습니다.");
-
+        lotto.Play();
     }
+
+    // 중복되지 않는 랜덤 숫자를 생성하는 메서드
+    private static int generateUniqueRandomNumber(List<Integer> numbers) {
+        int number;
+        do {
+            number = (int) (Math.random() * 45) + 1;
+        } while (numbers.contains(number));
+        return number;
+    }
+
 }
