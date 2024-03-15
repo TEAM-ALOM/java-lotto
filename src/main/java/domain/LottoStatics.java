@@ -1,8 +1,6 @@
 package domain;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LottoStatics {
 
@@ -14,15 +12,14 @@ public class LottoStatics {
      * 총 수익률 판별 - (로또 구매 금액 - 당첨 금액 합계) / 로또 구매 금액 * 100
      */
 
+    private final int INITAIL_NUMBER = 0;
 
 
-    public void matchingWinnerNumbersAndLottoNumbers(List<Integer> lottoWinnerNumbers, int bonusNumber, List<Integer> lotto) {
-        // 맞춘 개수에 대한 등수 구하기
-        WinningRank winningRank = getWinningRank(lottoWinnerNumbers, bonusNumber, lotto);
+    public Map<WinningRank, Integer> createWinnerDetails() {
+        Map<WinningRank, Integer> winnerDetails = new EnumMap<>(WinningRank.class);
+        Arrays.stream(WinningRank.values()).forEach(winningRank -> winnerDetails.put(winningRank, INITAIL_NUMBER));
 
-        // 등수에 맞는 랭크 개수 추가
-        int value = winnerLotto.getOrDefault(winningRank, 0);
-        winnerLotto.put(winningRank, value + 1);
+        return winnerDetails;
     }
 
     private WinningRank getWinningRank(List<Integer> lottoWinnerNumbers, int bonusNumber, List<Integer> lotto) {
