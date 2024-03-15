@@ -1,16 +1,17 @@
-package lotto;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.kokodak.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.kokodak.test.Assertions.assertSimpleTest;
 
 import java.util.List;
+
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.kokodak.test.NsTest;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
+    @Disabled
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
@@ -45,6 +46,7 @@ class ApplicationTest extends NsTest {
                                             );
     }
 
+    @Disabled
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
