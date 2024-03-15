@@ -19,6 +19,13 @@ public class Input {
 
         return purchaseAmount;
     }
+    public static List<Integer> inputWinnerNumbers(){
+
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String str = Console.readLine();
+        List<Integer> winnerNumbers = Arrays.stream(str.split(",")).map(ch -> Integer.parseInt(ch)).collect(Collectors.toList());
+        return winnerNumbers;
+    }
 
 
 
