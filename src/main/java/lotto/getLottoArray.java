@@ -29,4 +29,5 @@ public class getLottoArray {   //발행한 로또 수량 및 번호 출력하기
             System.out.println(array[i][5]+"]");
         }
     }
+
 }

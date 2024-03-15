@@ -28,5 +28,4 @@ public class checkLotto {
 
         return 9;
     }
-
 }
