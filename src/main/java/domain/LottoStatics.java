@@ -19,7 +19,7 @@ public class LottoStatics {
         }
         return winnerDetails;
     }
-    private static Map<WinningRank, Integer> createWinnerDetails() {
+    public static Map<WinningRank, Integer> createWinnerDetails() {
         Map<WinningRank, Integer> winnerDetails = new EnumMap<>(WinningRank.class);
         Arrays.stream(WinningRank.values()).forEach(winningRank -> winnerDetails.put(winningRank, INITAIL_NUMBER));
 

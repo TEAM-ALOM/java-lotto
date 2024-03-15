@@ -38,4 +38,22 @@ class LottoStaticsTest {
         Assertions.assertThat(winningDetails.get(WinningRank.FIRST_PLACE)).isEqualTo(1); // 6개
     }
 
+    @Test
+    @DisplayName("등수 금액을 개수 별로 더해 총 당첨 금액을 반환한다.")
+    void getTotalWinnnerAmount(){
+        //given
+        Map<WinningRank, Integer> winningDetails = LottoStatics.createWinnerDetails();
+        winningDetails.replace(WinningRank.FIRST_PLACE, 1);
+        winningDetails.replace(WinningRank.THIRD_PLACE, 2);
+        winningDetails.replace(WinningRank.FOURTH_PLACE, 3);
+
+        long result = WinningRank.FIRST_PLACE.getWinnerlottoPrice() + WinningRank.THIRD_PLACE.getWinnerlottoPrice() * 2
+                + WinningRank.FOURTH_PLACE.getWinnerlottoPrice() * 3;
+
+        //when
+        long totalWinnnerAmount = LottoStatics.getTotalWinnnerAmount(winningDetails);
+        //then
+        Assertions.assertThat(totalWinnnerAmount).isEqualTo(result);
+    }
+
 }
