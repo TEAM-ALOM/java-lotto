@@ -1,6 +1,6 @@
 package lotto.Controller;
 
-import lotto.Domain.InOut;
+import lotto.View.InOut;
 import lotto.Domain.Lotto;
 import lotto.Domain.LottoResult;
 import lotto.Domain.RandomLotto;
