@@ -6,16 +6,6 @@ import java.util.Map;
 
 public class LottoStatics {
 
-    private final Map<WinningRank, Integer> winnerLotto = new HashMap<>();
-    private final List<Integer> lottoWinnerNumbers;
-    private final List<Lotto> lottoNumberList;
-    private int lottoPurchaseMoney = 0;
-
-    public LottoStatics(int lottoPurchaseMoney, List<Integer> lottoWinnerNumbers, List<Lotto> lottoNumberList) {
-        this.lottoWinnerNumbers = lottoWinnerNumbers;
-        this.lottoNumberList = lottoNumberList;
-        this.lottoPurchaseMoney = lottoPurchaseMoney;
-    }
 
     /**
      * 당첨 번호와 로또 번호의 일치 개수 파악 기능 -> 개수 비교하는 메소드 -> 사용한 메소드로 구한 정보를 WinnerLank enum 활용하여 winnerLottos에 저장
@@ -23,6 +13,8 @@ public class LottoStatics {
      *
      * 총 수익률 판별 - (로또 구매 금액 - 당첨 금액 합계) / 로또 구매 금액 * 100
      */
+
+
 
     public void matchingWinnerNumbersAndLottoNumbers(List<Integer> lottoWinnerNumbers, int bonusNumber, List<Integer> lotto) {
         // 맞춘 개수에 대한 등수 구하기
