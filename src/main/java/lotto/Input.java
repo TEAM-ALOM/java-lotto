@@ -14,20 +14,18 @@ public class Input {
         int money = sc1.nextInt();
 
         if(money % 1000 != 0) {
-            UserHelp.error();
-            return -1;
+            UserHelp.errorUserBuy();
         }
 
         return money / 1000;
     }
 
-    public static List<Integer> luckNumberIn() {
+    public static List<Integer> luckyNumberIn() {
 
         Scanner sc = new Scanner(System.in);
         String str = sc.next();
 
-        String intStr = str.replaceAll(",", "");
-        String[] strArr = intStr.split("");
+        String[] strArr = str.split(",");
         List<String> intList = new ArrayList<>(Arrays.asList(strArr));
 
         List<Integer> luckyNumber = new ArrayList<>();
@@ -35,13 +33,28 @@ public class Input {
             luckyNumber.add(Integer.parseInt(s));
         }
 
+        if(luckyNumber.size() != 6) {
+            UserHelp.errorLuckyNumber_size();
+        }
+        for (int i = 0; i < 6; ++i) {
+            if(luckyNumber.get(i) > 45 || luckyNumber.get(i) < 0) {
+                UserHelp.errorLuckyNumber_number();
+            }
+        }
+
         return luckyNumber;
 
     }
 
-    public static int plusNumberIn() {
+    public static int plusNumberIn(List<Integer> luckyNumber) {
         Scanner sc = new Scanner(System.in);
-        return sc.nextInt();
+        int plusNumber = sc.nextInt();
+        boolean plus = luckyNumber.contains(plusNumber);
+        if(plus) {
+            UserHelp.errorPlusNumber();
+        }
+
+        return plusNumber;
     }
 
 
