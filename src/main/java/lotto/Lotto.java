@@ -21,7 +21,7 @@ public class Lotto {
     //로또 번호 개수 검사 (6개 아니면 error)
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            System.out.println("에러");
+            //System.out.println("에러");
             throw new IllegalArgumentException();
         }
     }
@@ -36,4 +36,7 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
