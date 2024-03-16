@@ -1,6 +1,7 @@
 package view;
 
 import lotto.Lottos;
+import lotto.WinningRank;
 
 import java.text.DecimalFormat;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class OutputView {
         System.out.println(WINNING_STATISTICS_MESSAGE);
     }
 
-    /*
+
     public static void printWinningDetails(Map<WinningRank, Integer> winningDetails) {
         winningDetails.entrySet().stream()
                 .filter(entry -> entry.getKey() != WinningRank.LAST_PLACE)
@@ -61,6 +62,6 @@ public class OutputView {
     public static void printLottoYield(double lottoYield) {
         System.out.printf(LOTTO_YIELD_MESSAGE, lottoYield);
     }
-    */
+
 }
 
