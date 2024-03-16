@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.exception.ExceptionConst;
+import lotto.constant.ExceptionConst;
 
 import java.util.List;
 
