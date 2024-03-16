@@ -1,10 +1,12 @@
-package lotto;
+package test.java.lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.kokodak.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.kokodak.test.Assertions.assertSimpleTest;
 
 import java.util.List;
+
+import main.java.lotto.Application;
 import org.junit.jupiter.api.Test;
 import org.kokodak.test.NsTest;
 

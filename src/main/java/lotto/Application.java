@@ -1,4 +1,4 @@
-package lotto;
+package main.java.lotto;
 
 public class Application {
     public static void main(String[] args) {
