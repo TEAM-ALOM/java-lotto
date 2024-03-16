@@ -3,6 +3,9 @@ package lotto.controller;
 import lotto.View.InputView;
 import lotto.View.OutputView;
 import lotto.domain.*;
+import lotto.service.LottoGenerator;
+import lotto.service.WinningDetails;
+import lotto.service.WinningRank;
 
 import java.util.Map;
 

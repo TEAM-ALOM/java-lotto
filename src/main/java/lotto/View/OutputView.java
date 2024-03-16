@@ -1,8 +1,7 @@
 package lotto.View;
 
-import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.WinningRank;
+import lotto.service.WinningRank;
 
 import java.text.DecimalFormat;
 import java.util.Map;

@@ -1,6 +1,7 @@
-package lotto.domain;
+package lotto.service;
 
 
+import lotto.domain.Lotto;
 import org.kokodak.Randoms;
 
 import java.util.ArrayList;
