@@ -8,6 +8,10 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -23,8 +27,8 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    private boolean checkBonusNumber(List<Integer> numbers, int bonusNumber){       //보너스 숫자 일치 여부 확인
-        if(numbers.contains(bonusNumber)){
+    private boolean checkBonusNumber(List<Integer> numbers, int bonusNumber) {       //보너스 숫자 일치 여부 확인
+        if (numbers.contains(bonusNumber)) {
             return true;
         }
         return false;
