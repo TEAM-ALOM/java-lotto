@@ -28,5 +28,6 @@ public class LottoController {
             System.out.println(e.getMessage());
         }
 
+
     }
 }
