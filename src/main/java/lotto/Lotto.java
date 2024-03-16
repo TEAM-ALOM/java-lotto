@@ -23,13 +23,6 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    private List<Integer> generateNumbers(){
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1,45,6);    //겹치지 않는 숫자 반환
-
-        numbers.sort(Comparator.naturalOrder());
-        return numbers;
-    }
-
     private boolean checkBonusNumber(List<Integer> numbers, int bonusNumber){       //보너스 숫자 일치 여부 확인
         if(numbers.contains(bonusNumber)){
             return true;
