@@ -1,8 +1,8 @@
-package lotto;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class BuyLotto {
+public class InputPurchaseAmount {
     private static final String PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
     public static int getPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_MESSAGE);

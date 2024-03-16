@@ -1,11 +1,11 @@
-package lotto.winningLotto;
+package lotto.domain;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.SortLottoNumber.sortNumbers;
+import static lotto.domain.SortLottoNumber.sortNumbers;
 
 public class InputWinPriceNumber {
 
