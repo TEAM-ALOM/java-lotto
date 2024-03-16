@@ -1,16 +1,14 @@
 package lotto;
 
 import lotto.winningLotto.WinningLotto;
-import lotto.WinPriceNumber;
+import lotto.winningLotto.InputWinPriceNumber;
 
-import static lotto.WinPriceNumber.getLottoBonusNumber;
-import static lotto.WinPriceNumber.getWinPriceNumber;
 
 public class Application {
 
     public static void main(String[] args) {
 
-        final int purchaseAmount = BuyLotto.getPurchaseAmount();
+        final int purchaseAmount =  BuyLotto.getPurchaseAmount();
         Lotto[] lotto = new Lotto[purchaseAmount];
 
         System.out.println(purchaseAmount + "개 구매했습니다.");
@@ -20,7 +18,7 @@ public class Application {
             lotto[i].printNumbers();
         }
 
-        WinningLotto winningLotto = new WinningLotto(getWinPriceNumber(), getLottoBonusNumber());
+        WinningLotto winningLotto = new WinningLotto(InputWinPriceNumber.getWinPriceNumber(), InputWinPriceNumber.getLottoBonusNumber());
 
 
     }
