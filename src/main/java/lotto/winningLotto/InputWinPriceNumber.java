@@ -1,4 +1,4 @@
-package lotto;
+package lotto.winningLotto;
 
 
 import java.util.ArrayList;
@@ -7,10 +7,11 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.SortLottoNumber.sortNumbers;
 
-public class WinPriceNumber {
+public class InputWinPriceNumber {
 
     private static final String LOTTO_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String LOTTO_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+
 
     public static List<Integer> getWinPriceNumber() {
         List<Integer> numbers = new ArrayList<>();
