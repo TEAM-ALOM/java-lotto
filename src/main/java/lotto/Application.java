@@ -11,9 +11,7 @@ public class Application {
         int purchaseAmount;
         System.out.println("구입 금액을 입력해 주세요");
         purchaseAmount = Integer.parseInt(Console.readLine());
-        if(purchaseAmount < 1000){
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상이어야 합니다");
-        }
+
 
 
 

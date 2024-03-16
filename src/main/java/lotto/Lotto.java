@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,8 +11,8 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        checkDuplicate(numbers);
+        validate(numbers);      //숫자 6개 인지 확인
+        checkDuplicate(numbers);    //중복된 숫자 있는지 확인
         this.numbers = numbers;
     }
 
@@ -25,8 +26,7 @@ public class Lotto {
     private List<Integer> generateNumbers(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1,45,6);    //겹치지 않는 숫자 반환
 
-        numbers.stream()
-                .sorted();
+        numbers.sort(Comparator.naturalOrder());
         return numbers;
     }
 
