@@ -1,5 +1,7 @@
 package lotto.constant;
 
+import java.text.DecimalFormat;
+
 public enum LottoConst {
     LOTTO_PRICE(1000),
     FIRST_PLACE_PRIZE(2000000000),
@@ -16,5 +18,11 @@ public enum LottoConst {
 
     public Integer getMoney() {
         return money;
+    }
+
+    public String getDecimalFormatMoney() {
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        String format = decimalFormat.format(money);
+        return format;
     }
 }
