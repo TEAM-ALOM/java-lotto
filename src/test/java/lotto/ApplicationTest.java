@@ -1,14 +1,13 @@
-package test.java.lotto;
+package lotto;
+
+import org.junit.jupiter.api.Test;
+import org.kokodak.test.NsTest;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.kokodak.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.kokodak.test.Assertions.assertSimpleTest;
-
-import java.util.List;
-
-import main.java.lotto.Application;
-import org.junit.jupiter.api.Test;
-import org.kokodak.test.NsTest;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
