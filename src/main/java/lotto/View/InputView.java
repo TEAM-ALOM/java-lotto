@@ -20,7 +20,7 @@ public class InputView {
     }
 
 //    찾아볼필요 ㅇ
-    public List<Integer> getWinningNums() {
+    public static List<Integer> getWinningNums() {
         System.out.println("당첨 번호를 입력해 주세요.");
         try {
             return Arrays.stream(Console.readLine().split(","))
@@ -32,7 +32,7 @@ public class InputView {
 
     }
 
-    public int getBonusNum() {
+    public static int getBonusNum() {
         System.out.println("보너스 번호를 입력해 주세요.");
         try {
             return Integer.parseInt(Console.readLine());
