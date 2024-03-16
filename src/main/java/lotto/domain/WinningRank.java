@@ -21,6 +21,7 @@ public enum WinningRank {
         this.prize = prize;
     }
 
+//    등수 찾기
     public static WinningRank findWinningRank(int matchCount, boolean containsBonusNum) {
         return Arrays.stream(values())
                 .filter(winningRank -> winningRank.matchCount == matchCount)
