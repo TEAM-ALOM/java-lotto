@@ -15,4 +15,8 @@ public enum ExceptionConst {
     ExceptionConst(String message) {
         this.message = message;
     }
+
+    public String getMessage() {
+        return message;
+    }
 }
