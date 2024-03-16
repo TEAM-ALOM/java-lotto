@@ -21,8 +21,6 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
-
     public static ArrayList<List<Integer>> LottoNumber(int count) {
 
         int i;
@@ -38,7 +36,7 @@ public class Lotto {
     }
 
     public static int[] LottoWinning(ArrayList<List<Integer>> numberU, List<Integer> luckyNumber, int plusNumber, int count) {
-        int[] win = new int[5];
+        int[] win = {0, 0, 0, 0, 0};
         int i;
 
         for(i = 0; i < count; ++i) {
@@ -46,8 +44,8 @@ public class Lotto {
             boolean plus = numberU.get(i).contains(plusNumber);
             if(plus) p = 1;
 
-            numberU.get(i).retainAll(luckyNumber);
-            same = numberU.get(i).size();
+            (numberU.get(i)).retainAll(luckyNumber);
+            same = (numberU.get(i)).size();
 
             if(same == 3) win[0] += 1;
             if(same == 4) win[1] += 1;
@@ -64,8 +62,10 @@ public class Lotto {
         double avg;
 
         sum = win[0] * 5000 + win[1] * 50000 + win[2] * 1500000 + win[3] * 30000000 + win[4] * 2000000000;
-        avg = sum / (double)count;
+        avg = sum / ((double)(count * 1000)) * 100;
 
-        return avg;
+        avg = Math.round(avg * 10);
+
+        return avg / 10;
     }
 }
