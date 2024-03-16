@@ -30,16 +30,16 @@ public class Output {
         System.out.println("당첨 번호를 입력해 주세요.");
 
         List<Integer> luckyNumber = new ArrayList<>();
-        luckyNumber = Input.luckNumberIn();
+        luckyNumber = Input.luckyNumberIn();
 
         return luckyNumber;
     }
 
-    public static int plusNumberOut() {
+    public static int plusNumberOut(List<Integer> luckyNumber) {
         System.out.println(" ");
         System.out.println("보너스 번호를 입력해 주세요.");
 
-        return Input.plusNumberIn();
+        return Input.plusNumberIn(luckyNumber);
     }
 
     public static void luckyResult(int[] win, double avg) {
