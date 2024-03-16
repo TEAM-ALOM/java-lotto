@@ -1,7 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,10 +16,11 @@ public class Application {
         List<Integer> luckyNumber = new ArrayList<>();
         luckyNumber = Output.luckyNumberOut();
 
-        int plusNumber = Output.plusNumberOut();
+        int plusNumber = Output.plusNumberOut(luckyNumber);
 
         int[] win = lotto.Lotto.LottoWinning(numberU, luckyNumber, plusNumber, count);
         Output.luckyResult(win, lotto.Lotto.LottoReturnRate(win, count));
+
 
     }
 }
