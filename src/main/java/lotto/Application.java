@@ -60,7 +60,6 @@ public class Application {
             int cnt = 0;
             for (int j : userSelectedNum)
             {
-                // 들여쓰기 3 ㅜㅜ 객체 지향 체조 규칙 어쩌구
                 if (lottoNumbers.contains(j)) cnt++;
             }
 
