@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.constant;
 
 public enum ExceptionConst {
 
