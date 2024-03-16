@@ -55,12 +55,12 @@ public class Application {
         int[] correctCnt = new int[]{0, 0, 0, 0};
         int bonusCnt = 0;
 
-        for (List<Integer> lottoNumbers : purchasedLottoNum)
+        for (List<Integer> lottoNumbers : purchasedLottoNum)   // 바꿔볼까
         {
             int cnt = 0;
             for (int j : userSelectedNum)
             {
-                //
+                // 들여쓰기 3 ㅜㅜ 객체 지향 체조 규칙 어쩌구
                 if (lottoNumbers.contains(j)) cnt++;
             }
 
@@ -92,7 +92,7 @@ public class Application {
         }
 
         // 수익률
-        double profitRate = earnMoney/purchasePrice;
+        double profitRate = (earnMoney/purchasePrice) * 100;
         DecimalFormat df = new DecimalFormat("#.#");
         String profitRateForPrint = df.format(profitRate);
         System.out.println("총 수익률은 "+ profitRateForPrint + "%입니다.");
