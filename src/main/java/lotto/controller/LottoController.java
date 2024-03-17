@@ -24,20 +24,18 @@ public class LottoController {
     }
 
     public void start(){
-        String input = inputView.readMoney();
-        new MoneyValidator().validate(input);
-        int money=Integer.parseInt(input);
-        LottoGenerator lottoGenerator = new LottoGenerator();
+        try {
+            int money=inputView.readMoney();
+            LottoGenerator lottoGenerator = new LottoGenerator();
 
-        List<Lotto> lottos = lottoGenerator.generate(money);
-        List<Integer> winningNumbers = inputView.readWinningNumbers();
-        int bonusNum=inputView.readBonusNumber();
-        if (winningNumbers.contains(bonusNum)==true){
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_BONUS_NUM.getMessage());
+            List<Lotto> lottos = lottoGenerator.generate(money);
+            List<Integer> winningNumbers = inputView.readWinningNumbers();
+            int bonusNum = inputView.readBonusNumber(winningNumbers);
+            WinnigResult winnigResult = new WinnigResult(new Lotto(winningNumbers), bonusNum);
+            lottoResult(lottos, winnigResult, money / 1000);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
         }
-        WinnigResult winnigResult = new WinnigResult(new Lotto(winningNumbers), bonusNum);
-        lottoResult(lottos,winnigResult,money/1000);
-
     }
     private void lottoResult(List<Lotto> lottoList, WinnigResult winnigResult, int ticketNum){
         Map<Ranking, Integer> result = setResult();

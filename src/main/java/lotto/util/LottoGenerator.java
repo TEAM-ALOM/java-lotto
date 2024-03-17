@@ -1,8 +1,8 @@
 package lotto.util;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.view.OutputView;
+import org.kokodak.Randoms;
 
 import java.util.*;
 
