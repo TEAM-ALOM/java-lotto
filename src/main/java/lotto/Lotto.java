@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -28,5 +30,9 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
+
+
+
 
 }
