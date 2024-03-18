@@ -11,14 +11,15 @@ public class InputView {
     public static PurchaseLotto inputPrice() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
-        return new PurchaseLotto(InputValidator.validateInputNumber(input));
+        int price = InputValidator.validateInputNumber(input);
+        return new PurchaseLotto(price);
     }
 
     private static int inputBonusNumber() {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
-        return InputValidator.validateInputBonusNumber(input);
+        return InputValidator.validateNumber(input);
     }
 
     private static Lotto inputLotto() {

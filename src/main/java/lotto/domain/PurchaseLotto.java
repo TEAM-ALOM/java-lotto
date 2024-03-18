@@ -21,7 +21,7 @@ public class PurchaseLotto {
 
         for (int i = 0; i < price/1000; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-
+            // 문제 요건에 맞게 여러 검사와 처리를 해주고(Lotto 클래스) 로또 리스트에 저장
             lottoList.add(new Lotto(numbers));
         }
 
@@ -31,8 +31,8 @@ public class PurchaseLotto {
     private Map<ResultLotto, Integer> createResult() {
         Map<ResultLotto, Integer> results = new HashMap<>();
 
-        for (ResultLotto result : ResultLotto.values()) {
-            results.put(result, 0);
+        for (ResultLotto resultLotto : ResultLotto.values()) {
+            results.put(resultLotto, 0);
         }
 
         return results;
@@ -49,8 +49,14 @@ public class PurchaseLotto {
         return results;
     }
 
-    public List<Lotto> getlottos() {
-        return lottos;
+    public List<String> getlottosMessage() {
+        List<String> lottoMessage = new ArrayList<>();
+
+        for (Lotto lotto: lottos) {
+            lottoMessage.add(lotto.toString());
+        }
+
+        return lottoMessage;
     }
 
     public float calculateProfit(Map<ResultLotto, Integer> result) {
@@ -65,9 +71,5 @@ public class PurchaseLotto {
 
     public int getPrice() {
         return lottos.size() * 1000;
-    }
-
-    public int getSize() {
-        return lottos.size();
     }
 }

@@ -10,10 +10,10 @@ import java.util.Map;
 public class OutputView {
     public static void printPurchaseLotto(PurchaseLotto purchaseLotto) {
         System.out.println();
-        List<Lotto> lottos = purchaseLotto.getlottos();
-        System.out.printf("%d개를 구매했습니다.\n", purchaseLotto.getSize());
-        for (Lotto lotto: lottos) {
-            System.out.println(lotto.toString());
+        List<String> messages = purchaseLotto.getlottosMessage();
+        System.out.printf("%d개를 구매했습니다.\n", messages.size());
+        for (String message: messages) {
+            System.out.println(message);
         }
     }
 
