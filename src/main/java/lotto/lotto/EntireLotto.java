@@ -1,6 +1,8 @@
 package lotto.lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
+
+import org.kokodak.Randoms;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +42,8 @@ public class EntireLotto {
         result = new int[]{0, 0, 0, 0,0};
         convertToInteger(strings);
         for (Lotto l : lottos) {
-            classifyResult(l.howManySameNumebr(answerList),l.isSameBouns(bonus));
+            LottoAction la = new LottoAction(l);
+            classifyResult(la.howManySameNumebr(answerList),la.isSameBouns(bonus));
         }
 
     }

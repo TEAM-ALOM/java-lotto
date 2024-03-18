@@ -28,21 +28,16 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-    public int howManySameNumebr(List<Integer> answer){
-        int sameNumber=0;
-        for (Integer i: answer){
-            if(numbers.contains(i)==true){
-                sameNumber += 1;
-            }
-        }
-        return sameNumber;
+    public int hasNumber(Integer number){
+        if(numbers.contains(number)==true)
+        return 1;
+        else
+            return 0;
     }
-    public boolean isSameBouns(Integer bonus){
-       if(numbers.contains(bonus)){
-           return true;
-       }
-        return false;
+    public boolean isSameBounusNumber(Integer bonus){
+        return numbers.contains(bonus);
     }
+
 
 
     // TODO: 추가 기능 구현

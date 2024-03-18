@@ -1,9 +1,10 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
+
 import java.util.Scanner;
 import lotto.lotto.EntireLotto;
 import lotto.ui.UI;
+import org.kokodak.Console;
 
 public class Program {
     static String[] goalNumbers;
@@ -15,9 +16,9 @@ public class Program {
     static UI ui;
     public void requestPrice(){
         ui = new UI();
-        scanner = new Scanner(System.in);           //Console.readline()을 이용해서 코드를 작성하려고 했으나, "unable to determine if the scanner is closed."가 자꾸 출력되어서
+        //Console.readline()을 이용해서 코드를 작성하려고 했으나, "unable to determine if the scanner is closed."가 자꾸 출력되어서
         ui.printRequestPrice();                    //테스트 코드에서 오류가 남. 그래서 readLine->scanner로 대체함.
-        validatePrice(scanner.nextLine());         //Console이 close되지 않아서 생기는 오류같은데 어떻게 해결해야 할 지 감이 안 잡힘.
+        validatePrice(Console.readLine());         //Console이 close되지 않아서 생기는 오류같은데 어떻게 해결해야 할 지 감이 안 잡힘.
 
     }
     public void makeEntireLotto(){
@@ -30,11 +31,11 @@ public class Program {
     }
     public void requestWinNumber(){
         ui.printRequestWinNumber();
-        goalNumbers=scanner.nextLine().split(",");
+        goalNumbers=Console.readLine().split(",");
     }
     public void requestBonusNumber(){
         ui.printRequestBonusNumber();
-        bonusNumber=Integer.valueOf(scanner.nextLine());
+        bonusNumber=Integer.valueOf(Console.readLine());
     }
     public void printResult(){
         entireLotto.makeResult(goalNumbers,bonusNumber);
@@ -46,7 +47,7 @@ public class Program {
         }catch (Exception e){
             System.out.println("[ERROR]");
 
-            throw new IllegalArgumentException();
+            //throw new IllegalArgumentException();
 
         }
         if (amount % 1000 != 0) {
