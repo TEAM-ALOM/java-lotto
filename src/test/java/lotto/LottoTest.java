@@ -1,8 +1,11 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,4 +26,12 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+
+    @DisplayName("랜덤으로 숫자 6개 생성")
+    @Test
+    void createRandomLottoNumber(){
+
+
+    }
+
 }
