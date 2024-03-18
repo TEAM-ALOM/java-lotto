@@ -1,5 +1,9 @@
 package lotto.ui;
 
+import lotto.lotto.LottoAction;
+
+import java.util.List;
+
 public class UI {
     public void printRequestPrice(){
         System.out.println("구입금액을 입력해 주세요.");
@@ -24,7 +28,7 @@ public class UI {
         System.out.println("6개 일치 (2,000,000,000원) - "+result[4]+"개");
         sum = result[0] * 5000 + result[1] * 50000 + result[2] * 1500000 + result[3] * 30000000 +
                 result[4] * 2000000000;
-        System.out.println("총 수익률은 "+(double)sum/amount*100+"%입니다.");
+        System.out.println("총 수익률은 " + (double) sum / amount * 100 + "%입니다.");}
 
-    }
+
 }

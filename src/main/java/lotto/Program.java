@@ -26,8 +26,9 @@ public class Program {
         ui.printMakeEntireLotto(buyNumber);
         entireLotto = new EntireLotto(buyNumber);
         for (int i = 0; i < buyNumber; i++) {
-            entireLotto.makeLotto();
+            entireLotto.makeLottos();
         }
+        entireLotto.printEntireLottoNumbers();
     }
     public void requestWinNumber(){
         ui.printRequestWinNumber();

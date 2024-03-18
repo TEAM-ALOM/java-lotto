@@ -7,28 +7,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EntireLotto {
-    private final List<Lotto> lottos;
-    private int number;
-    private Lotto lotto;
+    private final List<LottoAction> lottos;
     private List<Integer> answerList;
     private int[] result;
 
+    private int number;
+
 
     public EntireLotto(int number) {
-        lottos = new ArrayList<>();
+        lottos = new ArrayList<>(6);
         this.number = number;
+
     }
 
-    public void makeLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        lotto = new Lotto(numbers);
-        addLotto(lotto);
-        System.out.println(numbers);
+    public void makeLottos() {
+        LottoAction la = new LottoAction();
+        lottos.add(new LottoAction(la.makeLotto()));
+        //어캐 나눠야지 안정성있고, 좋은 코드가 될까
     }
 
-    public void addLotto(Lotto lotto) {
-        lottos.add(lotto);
-    }
 
     public boolean isSize(int size) {
         //System.out.println("size = " + size);
@@ -41,8 +38,7 @@ public class EntireLotto {
     public void makeResult(String[] strings, Integer bonus) {
         result = new int[]{0, 0, 0, 0,0};
         convertToInteger(strings);
-        for (Lotto l : lottos) {
-            LottoAction la = new LottoAction(l);
+        for (LottoAction la : lottos) {
             classifyResult(la.howManySameNumebr(answerList),la.isSameBouns(bonus));
         }
 
@@ -59,9 +55,7 @@ public class EntireLotto {
         result[sameNumber - 3] += 1;
         return;
     }
-    public void noEarnMoney(){
 
-    }
     public void classifyResult(int sameNumber,boolean isSameBonus){
        if(sameNumber>=3){
            earnMoney(sameNumber,isSameBonus);
@@ -76,6 +70,13 @@ public class EntireLotto {
     }
     public int[] getResult(){
         return result;
+    }
+    public void printEntireLottoNumbers(){
+        for (LottoAction lottoAction : lottos) {
+            System.out.println(lottoAction.getLottoNumber());
+
+        }
+
     }
 
 }
