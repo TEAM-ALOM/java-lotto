@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.validation.ErrorMessage;
 import org.kokodak.Console;
 
 public class InputView {
@@ -17,7 +18,7 @@ public class InputView {
         try {
             Integer.parseInt(moneyForPurchase);
         } catch (NumberFormatException e) {
-            throw new IllegalStateException("exception 문구");
+            throw new IllegalStateException(ErrorMessage.MONEY_FOR_PURCHASE_NOT_NUMBER.getMessage());
         }
     }
 }
