@@ -1,15 +1,18 @@
 package lotto.controller;
 
+import lotto.domain.PurchasedLotto;
+import lotto.view.InputView;
+
 public class LottoController {
     public void run() {
-        purchaseLotto();
+        PurchasedLotto purchasedLotto = new PurchasedLotto(purchaseLotto());
         publishLotto();
         getLottoNumbers();
         printLottoResult();
     }
 
-    private void purchaseLotto() {
-
+    private int purchaseLotto() {
+        return InputView.getPurchaseAmount();
     }
 
     private void publishLotto() {
