@@ -25,4 +25,12 @@ public class PurchasedLotto {
             lottoSet.add(new Lotto(numbers));
         }
     }
+
+    public int getLottoCount() {
+        return lottoCount;
+    }
+
+    public List<Lotto> getLottoSet() {
+        return lottoSet;
+    }
 }
