@@ -20,49 +20,30 @@ public class Start {
     public void run(){
         InOut inOut = new InOut();
         LottoResult lottoResult = new LottoResult();
+        RandomLotto randomLotto = new RandomLotto();
 
         int LottoAmount =inOut.InLottoMoney()/1000; //로또 개수 확인
 
-        List<List> myRandomLottoList = new ArrayList<>();
-        myRandomLottoList = setRandomLottoList(LottoAmount); //LottoAmount 개의 랜덤 로또 번호 생성
+        List<List> myRandomLottoList = randomLotto.setRandomLottoList(LottoAmount); //LottoAmount 개의 랜덤 로또 번호 생성
 
-        System.out.println(LottoAmount+"개를 구매하셨습니다");
+
+        inOut.OutLottoAmount(LottoAmount); //로또 개수 출력
         inOut.OutLottoList(myRandomLottoList); //랜덤으로 생성된 로또 출력
-
 
         List<Integer> WinningLotto = inOut.InWinningLotto(); //로또 당첨 번호 입력
         int BonusNum = inOut.InBonusNum(); //보너스 번호 입력
 
         for(List<Integer> LottoList : myRandomLottoList){ //로또 당첨 결과 설정
-            int Count = getResult(LottoList,WinningLotto);
+            int Count = lottoResult.getResult(LottoList,WinningLotto);
             setResult(Count,WinningLotto,BonusNum); }
 
-        double RateOfReturn = getRateOfReturn(getResultMoney(),LottoAmount*1000); //수익률
+        double RateOfReturn = lottoResult.getRateOfReturn(getResultMoney(),LottoAmount*1000); //수익률
 
         inOut.OutResultStatistics(FIRST,SECOND,THIRD,FORTH,FIVTH,RateOfReturn); //결과 출력
 
 
 
 
-    }
-
-    private static List<Integer> setRandomLotto(){ //단일 로또 생성
-        RandomLotto randomLotto = new RandomLotto();
-        Lotto lotto = new Lotto(randomLotto.getRandomlotto());
-        return lotto.getLotto();
-    }
-    public static List<List> setRandomLottoList(Integer Amount){ //Amount개의 로또 생성
-        List<List> RandomLottoList = new ArrayList<>();
-        for(int i=0;i<Amount;i++){
-            RandomLottoList.add(setRandomLotto());
-            Collections.sort(RandomLottoList.get(i));
-        }
-        return RandomLottoList;
-    }
-
-    private Integer getResult(List<Integer> LottoList,List<Integer> WinningLotto){ //개별 로또의 결과 확인
-        LottoResult lottoResult = new LottoResult();
-        return (int)lottoResult.getLottoResult(LottoList,WinningLotto);
     }
 
     private void setResult(Integer Count,List<Integer> WinningLotto , Integer BonusNum){ //등수에 해당하는 로또 개수 업데이트
@@ -89,11 +70,6 @@ public class Start {
                 FIRST++;
                 break;
         }
-    }
-
-    private double getRateOfReturn(double ResultMoney,double LottoMoney){ //수익률 계산
-        double a = (ResultMoney/LottoMoney);
-        return Math.round(a*10.0)/10.0;
     }
 
     private double getResultMoney(){

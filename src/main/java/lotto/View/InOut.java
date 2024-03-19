@@ -30,7 +30,6 @@ public class InOut {
     }
 
     public void OutResultStatistics(int FIRST,int SECOND,int THIRD,int FORTH,int FIVTH,double RateOfReturn){ //로또 최종 통계 출력
-        int ResultMoney = FIRST*2000000000 + SECOND*30000000 + THIRD*1500000 + FORTH*50000 + FIVTH*5000;
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - "+FIVTH+"개");
@@ -45,6 +44,10 @@ public class InOut {
         for(List<Integer> myList : MyRandomLottoList){
             System.out.println(myList);
         }
+    }
+
+    public void OutLottoAmount(int LottoAmount){
+        System.out.println(LottoAmount+"개를 구매하셨습니다");
     }
 
 }
