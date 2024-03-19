@@ -14,6 +14,7 @@ public class Application {
         //로또 생성 후 생성한 로또들 출력
         Lotto.generateLotto(purchasedLottos, numLotto);
         Application.printPurchasedLottos(purchasedLottos);
+        System.out.println(1);
 
         //당첨번호 입력받기
         List<Integer> winningNumbers = getWinningNumbers();
