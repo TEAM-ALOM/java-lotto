@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Arrays;
+
 public enum WinningRank {
     LAST_RANK(0, 0, false),
     FORTH_RANK(3, 5_000, false),
@@ -16,5 +18,17 @@ public enum WinningRank {
         this.match = match;
         this.reword = reword;
         this.bonus = bonus;
+    }
+
+    public int getReword() {
+        return reword;
+    }
+
+    public static WinningRank findWinningRank(int match, boolean bonus) {
+        return Arrays.stream(values())
+                .filter(winningRank -> winningRank.match == match)
+                .filter(winningRank -> winningRank.bonus == bonus)
+                .findFirst()
+                .orElse(LAST_RANK);
     }
 }
