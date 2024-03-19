@@ -50,8 +50,6 @@ public class Lotto {
         }
         return true;
     }
-
-
     public static int checkWinningResults(List<Integer> winningNums, Lotto lottos, int bonusN){
         int numOfWinnings = 0;
         for (int number : lottos.numbers) {
@@ -67,4 +65,19 @@ public class Lotto {
         }
         return 1;
     }
+
+    public static void printWinningResults(int[] result, int purchaseP) {
+        int first, second, third, fourth, fifth;
+        double earningRate;
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + result[5] + "개");
+        System.out.println("4개 일치 (50,000원) - " + result[4] + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + result[3] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result[2] + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + result[1] + "개");
+        earningRate = (result[5] * 5 + result[4] * 50 + result[3] * 1500 + result[2] * 30000 + result[1] * 2000000) / (purchaseP / 1000) * 100;
+        System.out.println("총 수익률은 " + earningRate + "입니다.");
+    }
+
 }

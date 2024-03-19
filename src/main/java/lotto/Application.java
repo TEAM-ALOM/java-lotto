@@ -42,6 +42,8 @@ public class Application {
            int rank = Lotto.checkWinningResults(winningNumbers, purchasedLottos.get(i), bonus);
            result[rank] += 1;
         }
-        
+
+        Lotto.printWinningResults(result, purchaseAmount);
+
     }
 }
