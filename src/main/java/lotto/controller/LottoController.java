@@ -12,7 +12,7 @@ public class LottoController {
         PurchasedLotto purchasedLotto = new PurchasedLotto(purchaseLotto());
         publishLotto(purchasedLotto);
         WinningLotto winningLotto = getLottoNumbers();
-        printLottoResult();
+        printLottoResult(purchasedLotto, winningLotto);
     }
 
     private int purchaseLotto() {
@@ -30,7 +30,7 @@ public class LottoController {
         return new WinningLotto(winningNumber, bonusNumber);
     }
 
-    private void printLottoResult() {
+    private void printLottoResult(PurchasedLotto purchasedLotto, WinningLotto winningLotto) {
 
     }
 }
