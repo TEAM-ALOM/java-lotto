@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import lotto.validation.ErrorMessage;
 import org.junit.jupiter.api.Test;
 
 class InputViewTest {
@@ -33,7 +34,7 @@ class InputViewTest {
         setInput(input);
         assertThatThrownBy(() -> InputView.moneyForPurchaseInput())
                 .isInstanceOf(IllegalStateException.class)
-                .hasMessage("구매금액은 숫자로 입력해주세요");
+                .hasMessage(ErrorMessage.MONEY_FOR_PURCHASE_NOT_NUMBER.getMessage());
     }
 
     @Test
