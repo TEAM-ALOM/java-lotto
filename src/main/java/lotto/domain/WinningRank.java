@@ -20,6 +20,10 @@ public enum WinningRank {
         this.bonus = bonus;
     }
 
+    public int getMatch() {
+        return match;
+    }
+
     public int getReword() {
         return reword;
     }

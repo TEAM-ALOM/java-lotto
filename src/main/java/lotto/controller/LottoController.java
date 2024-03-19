@@ -38,6 +38,7 @@ public class LottoController {
     private void printLottoResult(PurchasedLotto purchasedLotto, WinningLotto winningLotto) {
         Map<WinningRank, Integer> winningResult = calculateResult(purchasedLotto.getLottoSet(), winningLotto);
         double returnRate = calculateReturnRate(purchasedLotto.getPurchaseAmount(), winningResult);
+        OutputView.printWinningResult(winningResult, returnRate);
     }
 
     private Map<WinningRank, Integer> calculateResult(List<Lotto> lottoSet, WinningLotto winningLotto) {
