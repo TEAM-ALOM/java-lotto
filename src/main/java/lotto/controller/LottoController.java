@@ -1,14 +1,17 @@
 package lotto.controller;
 
 import lotto.domain.PurchasedLotto;
+import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class LottoController {
     public void run() {
         PurchasedLotto purchasedLotto = new PurchasedLotto(purchaseLotto());
         publishLotto(purchasedLotto);
-        getLottoNumbers();
+        WinningLotto winningLotto = getLottoNumbers();
         printLottoResult();
     }
 
@@ -21,8 +24,10 @@ public class LottoController {
         OutputView.printPublishedLotto(purchasedLotto.getLottoSet());
     }
 
-    private void getLottoNumbers() {
-
+    private WinningLotto getLottoNumbers() {
+        List<Integer> winningNumber = InputView.getLottoNumbers();
+        int bonusNumber = InputView.getBonusNumber();
+        return new WinningLotto(winningNumber, bonusNumber);
     }
 
     private void printLottoResult() {
