@@ -6,30 +6,33 @@ https://github.com/TEAM-ALOM/java-lotto
 
 ### **Model**
 
+#### LottoUser
+
+- 역할 : (int)`money`, `Lottos`과 `LottosWinningStatus`를 가지고 있는 객체
+
 #### Lotto
 
 - 역할 : 로또의 실질적 데이터
-    - [ ] 
 
 #### Lottos
 
-- 역할 : 구매한 로또들의 묶음 실질적 데이터
+- 역할 : 구매한 `Lotto`들의 묶음(`List`) 실질적 데이터
 
 #### LottoGenerator
 
-- 역할 : Lotto 생성
+- 역할 : `LottoUser.money`에 따라 `Lotto`들을 생성
 
 #### LottosWinningChecker
 
-- 역할 : Lottos의 당첨 계산
+- 역할 : `Lottos`의 당첨 계산
 
-#### LottosStatus
+#### LottosWinningStatus
 
-- 역할 : Lottos의 당쳠 계산 결과를 담은 실질적 데이터
+- 역할 : `WinningNumbers`,`WinningType`를 바탕으로 `Lottos`의 당쳠 계산 결과를 담은 실질적 데이터
 
 #### WinningNumbers
 
-- 역할 : 당첨 번호들(하나의 로또 객체)의 실질적 데이터
+- 역할 : 보너스 번호와 당첨 번호들(하나의 로또 객체)의 실질적 데이터
 
 #### WinningType
 
@@ -76,9 +79,28 @@ https://github.com/TEAM-ALOM/java-lotto
 
 #### ViewValidation
 
+- 역할 : 사용자 입출력에 관한 검증
+    - [ ] InputView
+        - [ ] 로또 구입 금액
+            - [ ] 숫자인가?
+        - [ ] 당첨 번호 입력
+            - [ ] 쉼표로 구분이 되었나
+            - [ ] 쉼표로 시작하는가
+            - [ ] 쉼표로 끝나는가
+        - [ ] 보너스 번호
+            -  [ ] 숫자 인가
+    - [ ] OutputView
+        - [ ] 구매 로또 출력
+        - [ ] 당첨 통계 출력
+
 #### ControllerValidation
 
 #### ModelValidation
 
-## Test
+- 역할 : 각 모델 객체에 관한 검증
 
+#### ErrorMessage
+
+- 역할 : 에러 메세지 모음
+
+## Test
