@@ -11,13 +11,17 @@ public class Application {
         // TODO: 프로그램 구현
 
         Scanner scanner = new Scanner(System.in);
-        int purchase_num = scanner.nextInt();   //로또 구입 금액
-        List<Integer> correctNumber = new ArrayList<>();
+        int purchase = scanner.nextInt();   //로또 구입 금액
+        List<Integer> winNumber = new ArrayList<>();
 
         String s = scanner.next();
         String[] n = s.split(",");
         for(int i=0;i<n.length;i++)
-            correctNumber.add(Integer.parseInt(n[i]));
+            winNumber.add(Integer.parseInt(n[i]));
+
+        int bonusNumber = scanner.nextInt();
+
+        int lottos = purchase / 1000;
 
 
 
