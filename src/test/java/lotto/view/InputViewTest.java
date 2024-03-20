@@ -1,5 +1,8 @@
 package lotto.view;
 
+import static lotto.validation.ErrorMessage.MONEY_FOR_PURCHASE_NOT_NUMBER;
+import static lotto.validation.ErrorMessage.WINNINGNUMBERS_NOT_END_WITH_COMMA;
+import static lotto.validation.ErrorMessage.WINNINGNUMBERS_NOT_START_WITH_COMMA;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -8,7 +11,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import lotto.validation.ErrorMessage;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class InputViewTest {
@@ -34,32 +38,57 @@ class InputViewTest {
         setInput(input);
         assertThatThrownBy(() -> InputView.moneyForPurchaseInput())
                 .isInstanceOf(IllegalStateException.class)
-                .hasMessage(ErrorMessage.MONEY_FOR_PURCHASE_NOT_NUMBER.getMessage());
+                .hasMessage(MONEY_FOR_PURCHASE_NOT_NUMBER.getMessage());
     }
 
     @Test
     void 당첨번호_정상_입력() {
-        
+        String input = "1,2,3,4,5,6";
+        List<Integer> rightWinningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        setInput(input);
+        assertThat(rightWinningNumbers).isEqualTo(InputView.winningNumbersInput());
     }
 
     @Test
     void 당첨번호_비정상_입력_문자() {
-
+        String input = "1,a,3,4,5,6";
+        setInput(input);
+        assertThatThrownBy(() -> InputView.winningNumbersInput())
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage(MONEY_FOR_PURCHASE_NOT_NUMBER.getMessage());
     }
 
-    @Test
-    void 당첨번호_비정상_입력_쉼표누락() {
-
-    }
+//    @Test
+//    void 당첨번호_비정상_입력_쉼표누락() {
+//        String input = "1,,3,4,5,6";
+//        setInput(input);
+//        assertThatThrownBy(() -> InputView.winningNumbersInput())
+//                .isInstanceOf(IllegalStateException.class)
+//                .hasMessage(ErrorMessage.MONEY_FOR_PURCHASE_NOT_NUMBER.getMessage());
+//    }
 
     @Test
     void 당첨번호_비정상_입력_쉼표중복() {
-
+        String input = "1,,3,4,5,6";
+        setInput(input);
+        assertThatThrownBy(() -> InputView.winningNumbersInput())
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage(MONEY_FOR_PURCHASE_NOT_NUMBER.getMessage());
     }
 
     @Test
     void 당첨번호_비정상_입력_처음_또는_끝에_쉼표() {
+        String input = ",3,4,5,6";
+        setInput(input);
+        assertThatThrownBy(() -> InputView.winningNumbersInput())
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage(WINNINGNUMBERS_NOT_START_WITH_COMMA.getMessage());
 
+        input = "3,4,5,6,";
+        setInput(input);
+        assertThatThrownBy(() -> InputView.winningNumbersInput())
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage(WINNINGNUMBERS_NOT_END_WITH_COMMA.getMessage());
     }
 
     @Test
