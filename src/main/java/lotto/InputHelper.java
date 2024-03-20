@@ -9,6 +9,8 @@ import static java.lang.Integer.parseInt;
 public class InputHelper {
     private static final Scanner scanner = new Scanner(System.in);
 
+
+    //정수를 입력받는 메소드
     public static int getIntInput(String prompt){
         System.out.println(prompt);
         int num = scanner.nextInt();
@@ -16,6 +18,7 @@ public class InputHelper {
         return num;
     }
 
+    //리스트를 입력받는 메소드
     public static List<Integer> getListInput(String prompt){
         List<Integer> list = new ArrayList<>();
         System.out.println(prompt);

@@ -14,7 +14,6 @@ public class Application {
         //로또 생성 후 생성한 로또들 출력
         Lotto.generateLotto(purchasedLottos, numLotto);
         Application.printPurchasedLottos(purchasedLottos);
-        System.out.println(1);
 
         //당첨번호 입력받기
         List<Integer> winningNumbers = getWinningNumbers();
@@ -26,16 +25,18 @@ public class Application {
         result = getResult(purchasedLottos, winningNumbers, bonus);
 
         //결과 출력하기
-        Lotto.printWinningResults(result, purchaseAmount);
+        Application.printWinningResults(result, purchaseAmount);
     }
 
 
-
+    //구매한 로또 목록 출력하는 메소드
     private static void printPurchasedLottos(List<Lotto> purchased){
         for(int i = 0; i<purchased.size(); i++){
             System.out.println(purchased.get(i).getLottoNum());
         }
     }
+
+    //당첨 번호 입력받는 메소드
     private static List<Integer> getWinningNumbers() {
         List<Integer> winningNumbers = InputHelper.getListInput("당첨 번호를 입력해 주세요.");
         if (!Lotto.isWinningNumberValuable(winningNumbers)) {
@@ -45,6 +46,7 @@ public class Application {
         return winningNumbers;
     }
 
+    //보너스 번호 입력 받는 메소드
     private static int getBonusNumber(){
         int bonusN = InputHelper.getIntInput("보너스 번호를 입력해 주세요.");
         if(bonusN < 1 || bonusN > 45){
@@ -53,6 +55,7 @@ public class Application {
         return bonusN;
     }
 
+    //구매한 모든 로또에 대해 반복문을 돌면서 당첨 확인한 후 결과를 저장하는 메소드
     private static int[] getResult(List<Lotto> purchased, List<Integer> winningNumbers, int bonus){
         int[] result = {0, 0, 0, 0, 0, 0};
         for(int i = 0; i<purchased.size(); i++){
@@ -60,5 +63,20 @@ public class Application {
             result[rank] += 1;
         }
         return result;
+    }
+
+    //결과 출력하는 메소드
+    private static void printWinningResults(int[] result, int purchaseP) {
+        int first, second, third, fourth, fifth;
+        double earningRate;
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + result[5] + "개");
+        System.out.println("4개 일치 (50,000원) - " + result[4] + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + result[3] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result[2] + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + result[1] + "개");
+        earningRate = (result[5] * 5 + result[4] * 50 + result[3] * 1500 + result[2] * 30000 + result[1] * 2000000) / (purchaseP / 1000) * 100;
+        System.out.println("총 수익률은 " + earningRate + "입니다.");
     }
 }
