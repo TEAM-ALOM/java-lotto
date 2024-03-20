@@ -18,7 +18,21 @@ public class Validation {
     private static final int LOTTO_MAX_NUMBER = 45;
     private static final int LOTTO_NUMBER_SIZE = 6;
 
-    public static void validateMoney(int purchasedAmount) {
+    public static int validateMoney(String purchasedAmount) {
+        int money = validateMoneyType(purchasedAmount);
+        validateMoneyRange(money);
+        return money;
+    }
+
+    private static int validateMoneyType(String purchasedAmount) {
+        try {
+            return Integer.parseInt(purchasedAmount);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INPUT_TYPE_RANGE_ERROR);
+        }
+    }
+
+    private static void validateMoneyRange(int purchasedAmount) {
         if (purchasedAmount <= ZERO || purchasedAmount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(INPUT_LOTTO_PRICE_ERROR);
         }
@@ -63,7 +77,7 @@ public class Validation {
     }
 
     private static void validateDuplicateLottoBonus(List<Integer> lotto, int bonus) {
-        if (!lotto.contains(bonus)) {
+        if (lotto.contains(bonus)) {
             throw new IllegalArgumentException(LOTTO_BONUS_DUPLICATED_ERROR);
         }
     }

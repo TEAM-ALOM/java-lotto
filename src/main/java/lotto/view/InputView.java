@@ -12,9 +12,9 @@ public class InputView {
     private static final String BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.";
     private static final String SEPARATOR_VALUE = ",";
 
-    public static int getPurchaseAmount() {
+    public static String getPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_MESSAGE);
-        return Integer.parseInt(Console.readLine());
+        return Console.readLine();
     }
 
     public static List<Integer> getLottoNumbers() {

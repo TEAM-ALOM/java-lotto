@@ -13,9 +13,9 @@ public class PurchasedLotto {
     private final int lottoCount;
     private final List<Lotto> lottoSet = new ArrayList<>();
 
-    public PurchasedLotto(int purchasedAmount) {
-        Validation.validateMoney(purchasedAmount);
-        this.lottoCount = purchasedAmount / LOTTO_PRICE;
+    public PurchasedLotto(String purchasedAmount) {
+        int money = Validation.validateMoney(purchasedAmount);
+        this.lottoCount = money / LOTTO_PRICE;
         generatedLotto();
     }
 

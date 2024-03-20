@@ -20,7 +20,7 @@ public class LottoController {
         printLottoResult(purchasedLotto, winningLotto);
     }
 
-    private int purchaseLotto() {
+    private String purchaseLotto() {
         return InputView.getPurchaseAmount();
     }
 
