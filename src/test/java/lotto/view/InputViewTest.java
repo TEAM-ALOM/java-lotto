@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.validation.ErrorMessage.MONEY_FOR_PURCHASE_NOT_NUMBER;
+import static lotto.validation.ErrorMessage.WINNINGNUMBERS_NOT_DOUBLE_COMMA;
 import static lotto.validation.ErrorMessage.WINNINGNUMBERS_NOT_END_WITH_COMMA;
 import static lotto.validation.ErrorMessage.WINNINGNUMBERS_NOT_START_WITH_COMMA;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -73,7 +74,7 @@ class InputViewTest {
         setInput(input);
         assertThatThrownBy(() -> InputView.winningNumbersInput())
                 .isInstanceOf(IllegalStateException.class)
-                .hasMessage(MONEY_FOR_PURCHASE_NOT_NUMBER.getMessage());
+                .hasMessage(WINNINGNUMBERS_NOT_DOUBLE_COMMA.getMessage());
     }
 
     @Test
@@ -93,11 +94,19 @@ class InputViewTest {
 
     @Test
     void 보너스번호_정상_입력() {
-
+        String input = "3";
+        setInput(input);
+        int money = InputView.bonusNumberInput();
+        assertThat(input).isEqualTo(String.valueOf(money));
     }
 
     @Test
     void 보너스번호_비정상_입력_문자() {
+        String input = "e";
+        setInput(input);
+        assertThatThrownBy(() -> InputView.bonusNumberInput())
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage(MONEY_FOR_PURCHASE_NOT_NUMBER.getMessage());
 
     }
 
