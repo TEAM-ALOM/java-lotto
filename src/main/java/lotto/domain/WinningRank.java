@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.Arrays;
 
+// 당첨 등수
 public enum WinningRank {
     LAST_RANK(0, 0, false),
     FORTH_RANK(3, 5_000, false),
@@ -20,14 +21,17 @@ public enum WinningRank {
         this.bonus = bonus;
     }
 
+    // 맞힌 번호 개수 반환
     public int getMatch() {
         return match;
     }
 
+    // 당첨금 반환
     public int getReword() {
         return reword;
     }
 
+    // 해당 조건 등수 반환
     public static WinningRank findWinningRank(int match, boolean bonus) {
         return Arrays.stream(values())
                 .filter(winningRank -> winningRank.match == match)

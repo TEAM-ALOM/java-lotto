@@ -15,15 +15,18 @@ public class OutputView {
     private static final String RETURN_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
     private static final String COMMA_FORMAT = "###,###";
 
+    // 구매 개수 출력
     public static void printLottoCount(int lottoCount) {
         System.out.printf(PURCHASED_COUNT_MESSAGE, lottoCount);
     }
 
+    // 구매한 로또 출력
     public static void printPublishedLotto(List<Lotto> lotto) {
         for (Lotto l: lotto)
             System.out.println(l.getNumbers().toString());
     }
 
+    // 당첨 통계 출력
     public static void printWinningResult(Map<WinningRank, Integer> winningResult, double returnRate) {
         System.out.println(WINNING_STATICS_MESSAGE);
 
@@ -41,6 +44,7 @@ public class OutputView {
         System.out.printf(RETURN_RATE_MESSAGE, returnRate);
     }
 
+    // 당첨금 형식 설정
     public static String getFormattingResult(int result) {
         DecimalFormat df = new DecimalFormat(COMMA_FORMAT);
         return df.format(result);

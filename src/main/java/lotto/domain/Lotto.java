@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.util.Validation;
+
 import java.util.List;
 
 public class Lotto {
@@ -7,6 +9,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        Validation.validateDuplicateLottoNumber(numbers);
         this.numbers = numbers;
     }
 
