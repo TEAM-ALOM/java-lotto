@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.util.Validation;
 import org.kokodak.Randoms;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class PurchasedLotto {
     private final List<Lotto> lottoSet = new ArrayList<>();
 
     public PurchasedLotto(int purchasedAmount) {
+        Validation.validateMoney(purchasedAmount);
         this.lottoCount = purchasedAmount / LOTTO_PRICE;
         generatedLotto();
     }
