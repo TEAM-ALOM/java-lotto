@@ -34,7 +34,7 @@ public class Lotto {
     //로또 개수만큼 로또 생성하기
     public static void generateLotto(List<Lotto> lottoList, int num){
         for(int i = 0; i<num; i++){
-            List<Integer> numberList = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numberList = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(numberList);
             Lotto lotto = new Lotto(numberList);
             lottoList.add(lotto);
@@ -42,13 +42,34 @@ public class Lotto {
     }
 
     //입력받은 당첨번호의 범위 확인하기
-    public static boolean isWinningNumberValuable(List<Integer> numbers){
-        for(int i = 0; i<numbers.size(); i++){
+    public static boolean checkWinningNumbersCount(List<Integer> numbers){
+        return numbers.size() == 6;
+    }
+
+    public static boolean checkWinningNumbersRange(List<Integer> numbers){
+        for(int i = 0; i < numbers.size(); i++){
             if(numbers.get(i) < 1 || numbers.get(i) > 45){
                 return false;
             }
         }
         return true;
+    }
+
+    public static boolean checkWinningNumbersDuplication(List<Integer> numbers){
+       Set<Integer> set = new HashSet<>(numbers);
+        if(set.size() != numbers.size())
+            return false;
+        return true;
+    }
+
+    public static void checkWinningNumberBonus(List<Integer> numbers, int bonus){
+        Set<Integer> s = new HashSet<>(numbers);
+        List<Integer> list = new ArrayList<>(numbers);
+        s.add(bonus);
+        list.add(bonus);
+        if(s.size() != list.size()){
+            throw new IllegalArgumentException("[ERROR]로또 번호에 중복이 있습니다.");
+        }
     }
 
 
