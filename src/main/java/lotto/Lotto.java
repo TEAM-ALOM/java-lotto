@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.exception.DuplicateLottoNumberException;
 import lotto.exception.InvalidRangeLottoNumberException;
+import lotto.exception.InvalidSizeLottoNumberException;
 
 import java.util.HashSet;
 import java.util.List;
