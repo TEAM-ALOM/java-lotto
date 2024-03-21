@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.exception.DuplicateLottoNumberException;
+import lotto.exception.InvalidRangeLottoNumberException;
 
 import java.util.HashSet;
 import java.util.List;
