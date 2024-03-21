@@ -1,5 +1,7 @@
 package lotto;
 
+import org.kokodak.Randoms;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -26,16 +28,33 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] This is not an appropriate value. Please check the amount again.");
         }
 
-        List<Integer> numbers = new ArrayList<>();
+        // 로또 구입 결과 출력
+        int lotto_amount = money / 1000;
+        System.out.println("Purchased " + lotto_amount + " lotto");
+
+        List<List<Integer>> purchased_lotto = new ArrayList<>();
+
+        for (int i = 0; i < lotto_amount; i++){
+            List<Integer> RandomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(RandomNumbers);
+
+            purchased_lotto.add(RandomNumbers);
+        }
+
+        for (int i = 0; i < lotto_amount; i++){
+            System.out.println(purchased_lotto.get(i));
+        }
 
         // 당첨 번호 입력
+        List<Integer> numbers = new ArrayList<>();
+
         System.out.println("Please enter winning number.");
 
         String str = br.readLine();
         List<String> list = Arrays.asList(str.split(","));
 
         // 당첨번호 7개 이상 입력 시 예외 처리
-        if (list.size() > 6){
+        if (list.size() != 6){
             throw new IllegalArgumentException("[ERROR] There are too many winning numbers.");
         }
 
@@ -59,7 +78,7 @@ public class Application {
         // 보너스 번호 중복 시 예외 처리
         Set<Integer> numbersSet = new HashSet<>(numbers);
 
-        if (list.size() != listSet.size()){
+        if (numbers.size() != numbersSet.size()){
             throw new IllegalArgumentException("[ERROR] There is a duplicate number.");
         }
 
