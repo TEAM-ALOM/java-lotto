@@ -1,10 +1,11 @@
-package lotto;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.kokodak.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.kokodak.test.Assertions.assertSimpleTest;
 
+import java.io.IOException;
 import java.util.List;
+
+import lotto.Application;
 import org.junit.jupiter.api.Test;
 import org.kokodak.test.NsTest;
 
@@ -54,7 +55,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Override
-    public void runMain() {
+    public void runMain()  {
         Application.main(new String[]{});
     }
 }
