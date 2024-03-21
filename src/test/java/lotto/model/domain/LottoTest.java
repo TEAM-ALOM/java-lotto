@@ -42,7 +42,7 @@ class LottoTest {
     }
 
     @Test
-    void 로또번호_비정상_로또수_범위초과_예외발생() {
+    void 로또번호_비정상_로또수_범위밖_숫자_예외발생() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
