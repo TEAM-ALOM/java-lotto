@@ -21,6 +21,7 @@ public class Application {
         // int money = scanner.nextInt();
         int money = Integer.parseInt(br.readLine());
 
+        // 로또 구입 금액이 1000원 단위가 아닐 때 예외 처리
         if (money % 1000 != 0){
             throw new IllegalArgumentException("[ERROR] This is not an appropriate value. Please check the amount again.");
         }
@@ -33,10 +34,19 @@ public class Application {
         String str = br.readLine();
         List<String> list = Arrays.asList(str.split(","));
 
+        // 당첨번호 7개 이상 입력 시 예외 처리
         if (list.size() > 6){
             throw new IllegalArgumentException("[ERROR] There are too many winning numbers.");
         }
 
+        // 당첨번호 중복 입력 시 예외 처리
+        Set<String> listSet = new HashSet<>(list);
+
+        if (list.size() != listSet.size()){
+            throw new IllegalArgumentException("[ERROR] There is a duplicate number.");
+        }
+
+        // 문자열 리스트 -> 정수형 리스트로 변환
         for (String s : list){
             numbers.add(Integer.parseInt(s));
         }
@@ -45,6 +55,13 @@ public class Application {
         System.out.println("Please enter bonus number.");
         str = br.readLine();
         numbers.add(Integer.parseInt(str));
+
+        // 보너스 번호 중복 시 예외 처리
+        Set<Integer> numbersSet = new HashSet<>(numbers);
+
+        if (list.size() != listSet.size()){
+            throw new IllegalArgumentException("[ERROR] There is a duplicate number.");
+        }
 
         //System.out.println(numbers);
     }
