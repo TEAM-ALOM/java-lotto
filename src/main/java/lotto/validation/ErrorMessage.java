@@ -12,7 +12,10 @@ public enum ErrorMessage {
     LOTTO_HAS_DUPLICATED_NUMBER("중복된 숫자는 기입할 수 없습니다."),
 
     LOTTOS_COUNT_OUT_OF_RANGE_100("로또는 1회당 100개까지 구매가능합니다."),
-    LOTTOS_SIZE_NOT_MATCH_COUNT("구매 가격만큼 로또를 구매하셔야합니다.");
+    LOTTOS_SIZE_NOT_MATCH_COUNT("구매 가격만큼 로또를 구매하셔야합니다."),
+
+    BONUS_NUMBER_IS_DUPLICATED("당첨번호와 중복된 수입니다."),
+    BONUS_NUMBER_OUT_OF_RANGE("보너스 번호도 로또 번호와 같이 1~45 사이의 수입니다.");
 
     private final String message;
 
