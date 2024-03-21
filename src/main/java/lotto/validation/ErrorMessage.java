@@ -18,12 +18,13 @@ public enum ErrorMessage {
     BONUS_NUMBER_OUT_OF_RANGE("보너스 번호도 로또 번호와 같이 1~45 사이의 수입니다.");
 
     private final String message;
+    private static final String START_ERROR = "[ERROR] ";
 
     ErrorMessage(String message) {
         this.message = message;
     }
 
     public String getMessage() {
-        return message;
+        return START_ERROR + message;
     }
 }

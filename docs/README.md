@@ -24,11 +24,11 @@ https://github.com/TEAM-ALOM/java-lotto
 
 #### LottosWinningChecker
 
-- 역할 : `Lottos`의 당첨 계산
+- 역할 : `Lottos`의 당첨 계산 후 `LottosWinningStatus` 생성
 
 #### LottosWinningStatus
 
-- 역할 : `WinningNumbers`,`WinningType`를 바탕으로 `Lottos`의 당쳠 계산 결과를 담은 실질적 데이터
+- 역할 : `WinningNumbers`,`WinningType`를 바탕으로 `Lottos`의 당쳠 계산 `LottoWinningChecker` 결과를 담은 실질적 데이터
 
 #### WinningNumbers
 
