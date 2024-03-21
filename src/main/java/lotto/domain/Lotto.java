@@ -1,4 +1,7 @@
-package lotto;
+package lotto.domain;
+
+import lotto.config.BaseException;
+import lotto.config.BaseResponseStatus;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,28 +19,33 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호 개수가 올바르지 않습니다.");
+            throw new BaseException(BaseResponseStatus.LOTTO_SIZE_ERROR);
         }
         if(new HashSet<>(numbers).size() != 6){
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 존재합니다.");
+            throw new BaseException(BaseResponseStatus.LOTTO_NUM_DUPLICATE);
         }
     }
     private void validateNumber(List<Integer> numbers){
         for(int number : numbers){
             if(number > 45 || number < 1)
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new BaseException(BaseResponseStatus.NUMBER_RANGE_ERROR);
         }
     }
     private void validateBonusNumber(int bonusNumber){
         if(bonusNumber > 45 || bonusNumber < 1)
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new BaseException(BaseResponseStatus.NUMBER_RANGE_ERROR);
     }
-    public void addBonusNumber(int num){
+    public int addBonusNumber(int num){
         validateBonusNumber(num);
         numbers.add(num);
         Collections.sort(numbers);
+        return num;
     }
     public void printLotto(){
         System.out.println(Arrays.toString(numbers.toArray()));
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
