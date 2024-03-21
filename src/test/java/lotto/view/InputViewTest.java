@@ -26,19 +26,12 @@ class InputViewTest {
         assertThat(input).isEqualTo(String.valueOf(money));
     }
 
-    private static void setInput(String input) {
-        OutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-    }
-
     @Test
-    void 구입금액_비정상_입력_문자() {
+    void 구입금액_비정상_입력_문자_예외발생() {
         String input = "english";
         setInput(input);
         assertThatThrownBy(() -> InputView.moneyForPurchaseInput())
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(MONEY_FOR_PURCHASE_NOT_NUMBER.getMessage());
     }
 
@@ -51,11 +44,11 @@ class InputViewTest {
     }
 
     @Test
-    void 당첨번호_비정상_입력_문자() {
+    void 당첨번호_비정상_입력_문자_예외발생() {
         String input = "1,a,3,4,5,6";
         setInput(input);
         assertThatThrownBy(() -> InputView.winningNumbersInput())
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(MONEY_FOR_PURCHASE_NOT_NUMBER.getMessage());
     }
 
@@ -69,26 +62,26 @@ class InputViewTest {
 //    }
 
     @Test
-    void 당첨번호_비정상_입력_쉼표중복() {
+    void 당첨번호_비정상_입력_쉼표중복_예외발생() {
         String input = "1,,3,4,5,6";
         setInput(input);
         assertThatThrownBy(() -> InputView.winningNumbersInput())
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(WINNINGNUMBERS_NOT_DOUBLE_COMMA.getMessage());
     }
 
     @Test
-    void 당첨번호_비정상_입력_처음_또는_끝에_쉼표() {
+    void 당첨번호_비정상_입력_처음_또는_끝에_쉼표_예외발생() {
         String input = ",3,4,5,6";
         setInput(input);
         assertThatThrownBy(() -> InputView.winningNumbersInput())
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(WINNINGNUMBERS_NOT_START_WITH_COMMA.getMessage());
 
         input = "3,4,5,6,";
         setInput(input);
         assertThatThrownBy(() -> InputView.winningNumbersInput())
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(WINNINGNUMBERS_NOT_END_WITH_COMMA.getMessage());
     }
 
@@ -101,13 +94,19 @@ class InputViewTest {
     }
 
     @Test
-    void 보너스번호_비정상_입력_문자() {
+    void 보너스번호_비정상_입력_문자_예외발생() {
         String input = "e";
         setInput(input);
         assertThatThrownBy(() -> InputView.bonusNumberInput())
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(MONEY_FOR_PURCHASE_NOT_NUMBER.getMessage());
 
     }
 
+    private static void setInput(String input) {
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+    }
 }

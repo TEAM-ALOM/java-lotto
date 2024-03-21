@@ -37,19 +37,19 @@ public class InputView {
         try {
             Integer.parseInt(moneyForPurchase);
         } catch (NumberFormatException e) {
-            throw new IllegalStateException(MONEY_FOR_PURCHASE_NOT_NUMBER.getMessage());
+            throw new IllegalArgumentException(MONEY_FOR_PURCHASE_NOT_NUMBER.getMessage());
         }
     }
 
     private static void checkRightCommaFormat(String winningNumbers) {
         if (winningNumbers.startsWith(",")) {
-            throw new IllegalStateException(WINNINGNUMBERS_NOT_START_WITH_COMMA.getMessage());
+            throw new IllegalArgumentException(WINNINGNUMBERS_NOT_START_WITH_COMMA.getMessage());
         }
         if (winningNumbers.endsWith(",")) {
-            throw new IllegalStateException(WINNINGNUMBERS_NOT_END_WITH_COMMA.getMessage());
+            throw new IllegalArgumentException(WINNINGNUMBERS_NOT_END_WITH_COMMA.getMessage());
         }
         if (winningNumbers.contains(",,")) {
-            throw new IllegalStateException(WINNINGNUMBERS_NOT_DOUBLE_COMMA.getMessage());
+            throw new IllegalArgumentException(WINNINGNUMBERS_NOT_DOUBLE_COMMA.getMessage());
         }
     }
 
