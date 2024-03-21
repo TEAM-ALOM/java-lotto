@@ -6,6 +6,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) throws IOException {
@@ -61,7 +63,7 @@ public class Application {
         // 당첨번호 중복 입력 시 예외 처리
         Set<String> listSet = new HashSet<>(list);
 
-        if (list.size() != listSet.size()){
+        if (list.size() != listSet.size()) {
             throw new IllegalArgumentException("[ERROR] There is a duplicate number.");
         }
 
@@ -70,18 +72,68 @@ public class Application {
             numbers.add(Integer.parseInt(s));
         }
 
+        // 입력된 당첨번호가 1~45 범위가 아닐 때 예외처리
+        for (Integer num : numbers){
+            if (num < 1 || num > 45){
+                throw new IllegalArgumentException("[ERROR] Invalid value.");
+            }
+        }
+
         // 보너스 번호 입력
         System.out.println("Please enter bonus number.");
         str = br.readLine();
-        numbers.add(Integer.parseInt(str));
+        int bonus = Integer.parseInt(str);
 
         // 보너스 번호 중복 시 예외 처리
-        Set<Integer> numbersSet = new HashSet<>(numbers);
-
-        if (numbers.size() != numbersSet.size()){
-            throw new IllegalArgumentException("[ERROR] There is a duplicate number.");
+        for (int i = 0; i < numbers.size(); i++){
+            if (numbers.get(i) == bonus){
+                throw new IllegalArgumentException("[ERROR] There is a duplicate number.");
+            }
         }
 
-        //System.out.println(numbers);
+        // 당첨 결과 계산
+        int income = 0;
+        int[] result = new int[5];
+        for (int i = 0; i < 5; i++)
+            result[i] = 0;
+
+        for (List<Integer> purchased_list : purchased_lotto){
+            List<Integer> matchList = purchased_list.stream().filter(o ->
+                    numbers.stream().anyMatch(Predicate.isEqual(o))).toList();
+
+            if (matchList.size() == 6) {
+                income += 2000000000;
+                result[0]++;
+
+            }
+            else if (matchList.size() == 5 && purchased_list.contains(bonus)) {
+                income += 30000000;
+                result[1]++;
+            }
+            else if (matchList.size() == 5) {
+                income += 1500000;
+                result[2]++;
+            }
+            else if (matchList.size() == 4) {
+                income += 50000;
+                result[3]++;
+            }
+            else if (matchList.size() == 3) {
+                income += 5000;
+                result[4]++;
+            }
+        }
+
+        // 당첨 결과 출력
+        System.out.println("winning statistics");
+        System.out.println("---");
+        System.out.println("Correct 3 (5,000) - " + result[4]);
+        System.out.println("Correct 4 (50,000) - " + result[3]);
+        System.out.println("Correct 5 (1,500,000) - " + result[2]);
+        System.out.println("Correct 5, Bonus (30,000,000) - " + result[1]);
+        System.out.println("Correct 6 (2,000,000,000) - " + result[0]);
+
+        float total_return = (float)income / (float)money * 100.0f;
+        System.out.println("Total Return : " + total_return + "%");
     }
 }
