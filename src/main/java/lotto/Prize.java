@@ -1,9 +1,7 @@
-package lotto.domain;
+package lotto;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.function.BiPredicate;
-import java.util.stream.Collectors;
 
 public enum Prize {
     EMPTY(0

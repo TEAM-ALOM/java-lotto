@@ -6,7 +6,6 @@ import static org.kokodak.test.Assertions.assertSimpleTest;
 
 import java.util.List;
 
-import lotto.domain.Application;
 import org.junit.jupiter.api.Test;
 import org.kokodak.test.NsTest;
 

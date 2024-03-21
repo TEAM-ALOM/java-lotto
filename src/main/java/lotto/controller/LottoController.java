@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import lotto.domain.*;
-import lotto.domain.generator.LottoGenerator;
+import lotto.*;
+import lotto.generator.LottoGenerator;
 import lotto.view.InputBonusNumberView;
 import lotto.view.InputBuyLottoView;
 import lotto.view.InputWinningLottoView;

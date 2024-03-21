@@ -1,12 +1,9 @@
-package lotto.domain;
+package lotto;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import org.kokodak.Console;
-import org.kokodak.Randoms;
 
 public class Lotto {
     private static final int LOTTO_SIZE = 6;

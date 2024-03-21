@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto;
 
 import lotto.exception.DivideMoneyException;
 import lotto.exception.ZeroMoneyException;
