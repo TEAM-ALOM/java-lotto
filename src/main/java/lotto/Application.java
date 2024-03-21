@@ -14,6 +14,7 @@ public class Application {
         Scanner scanner = new Scanner(System.in);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+        // 로또 구입 금액 입력
         //System.out.println("로또 구입 금액을 입력해주세요.");
         System.out.println("Please enter the amount of lotto purchase.");
 
@@ -26,6 +27,7 @@ public class Application {
 
         List<Integer> numbers = new ArrayList<>();
 
+        // 당첨 번호 입력
         System.out.println("Please enter winning number.");
 
         String str = br.readLine();
@@ -39,7 +41,11 @@ public class Application {
             numbers.add(Integer.parseInt(s));
         }
 
-        System.out.println(numbers);
+        // 보너스 번호 입력
+        System.out.println("Please enter bonus number.");
+        str = br.readLine();
+        numbers.add(Integer.parseInt(str));
 
+        //System.out.println(numbers);
     }
 }
