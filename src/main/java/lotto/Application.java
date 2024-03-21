@@ -2,17 +2,13 @@ package lotto;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
+import org.kokodak.Randoms;
 
 public class Application {
 
     private static List<Integer> generateLottoNumbers() {
         List<Integer> numbers = new ArrayList<>();
-        // 여기에서 각 번호를 랜덤하게 생성하는 코드를 작성하세요.
-        // 이 예시에서는 간단하게 1부터 45까지의 랜덤한 번호를 생성합니다.
-        for (int i = 0; i < 6; i++) {
-            int randomNumber = (int) (Math.random() * 45) + 1; // 1부터 45까지의 랜덤한 숫자 생성
-            numbers.add(randomNumber); // 생성된 숫자를 리스트에 추가
-        }
+        numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return numbers;
     }
 
@@ -41,13 +37,5 @@ public class Application {
             Lotto lotto = lottoList.get(i);
             System.out.println("Lotto " + (i + 1) + " numbers: " + lotto.getNumbers());
         }
-//        Random rd = new Random();
-//        for (int i = 0; i < cnt; i++)
-//        {
-//            List<Integer> numbers = new ArrayList<>();
-//            numbers.add(rd.nextInt(44) + 1);
-//            Lotto[i] = new Lotto(numbers); //i번째 로또객체 생성
-//            System.out.println("[" + Lotto[i].getNumbers() + "]"); //한줄씩 출력 // 굳이 객체호출하지말고 바로 쓰는편이 낫나 의문
-//        }
     }
 }
