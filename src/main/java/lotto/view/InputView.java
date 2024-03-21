@@ -1,6 +1,6 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
+import org.kokodak.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
