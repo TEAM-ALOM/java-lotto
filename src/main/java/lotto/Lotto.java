@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -27,6 +28,23 @@ public class Lotto {
         }
         System.out.println("]");
     }
+
+    public void sorting(){
+        Collections.sort(numbers);
+    }
+
+    public void overlapcheck(){
+        sorting();
+        int a = numbers.get(0);
+        for(int i=1;i<numbers.size();i++){
+            if(numbers.get(i) == a){
+                System.out.println("[ERROR]");
+                throw new IllegalArgumentException();
+            }
+            a=i;
+        }
+    }
+
 
     public int getNum(int i){
         return numbers.get(i);

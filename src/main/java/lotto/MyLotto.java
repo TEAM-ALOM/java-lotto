@@ -3,12 +3,13 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyLotto {
-    public Lotto lottos;
-    public static int profit = 0;
+public class MyLotto extends Lotto{
 
-    public MyLotto(Lotto lotto){
-        this.lottos = lotto;
+    public static long profit = 0;
+
+    public MyLotto(List<Integer> ns){
+        super(ns);
     }
+
 
 }

@@ -13,16 +13,16 @@ public class Application {
 
         System.out.println("구입금액을 입력해 주세요.");
         Scanner scanner = new Scanner(System.in);
-        int purchase = scanner.nextInt();   //로또 구입 금액
+        WinLotto.purchase = scanner.nextInt();   //로또 구입 금액
 
-        if(purchase % 10 != 0){
+        if(WinLotto.purchase % 10 != 0){
             System.out.println("[ERROR]");
             throw new IllegalArgumentException();
         }
 
         System.out.println();
 
-        int lottoCount = purchase / 1000;
+        int lottoCount = WinLotto.purchase / 1000;
         System.out.println(lottoCount + "개를 구매했습니다.");
 
         List<MyLotto> lottos = new ArrayList<>();
@@ -31,12 +31,12 @@ public class Application {
         {
             List<Integer> ns = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(ns);
-            Lotto tmp = new Lotto(ns);
-            lottos.add(new MyLotto(tmp));
+            lottos.add(new MyLotto(ns));
+            lottos.get(i).overlapcheck();
         }
 
         for(int i=0;i<lottoCount;i++){
-            lottos.get(i).lottos.print();
+            lottos.get(i).print();
         }
         System.out.println();
 
@@ -47,6 +47,7 @@ public class Application {
         for(int i=0;i<n.length;i++)
             inputwin.add(Integer.parseInt(n[i]));
         WinLotto win = new WinLotto(inputwin);
+        win.overlapcheck();
 
         System.out.println();
 
