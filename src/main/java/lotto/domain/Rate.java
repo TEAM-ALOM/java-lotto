@@ -1,4 +1,8 @@
-package lotto;
+package lotto.domain;
+
+import lotto.domain.Money;
+import lotto.domain.Prize;
+import lotto.domain.PrizeResult;
 
 public class Rate {
 
