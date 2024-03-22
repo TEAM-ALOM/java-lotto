@@ -4,13 +4,11 @@ import lotto.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.Numbers;
 import lotto.domain.Rank;
+import lotto.view.ExceptionMessage;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LottoController {
 
@@ -20,21 +18,48 @@ public class LottoController {
         try {
             start();
         } catch (IllegalStateException e) {
-
+            System.out.println(e.getMessage());
         }
     }
 
     public void start() {
-        int money = Integer.parseInt(InputView.inputMyMoney());
+        int money = InputView.inputMyMoney();
         int ticketCount = new LottoNumber(money).count;
         OutputView.printTicketCount(ticketCount);
 
         lottoList = makeLottoList(ticketCount);
         List<Integer> winningNumber = InputView.inputWinningNumber();
+        validateWinningNumber(winningNumber);
         int bonusNumber = InputView.inputBonusNumber(winningNumber);
-
+        validateBonusNumber(winningNumber, bonusNumber);
         lottoResult(lottoList, winningNumber, bonusNumber);
     }
+
+    private void validateWinningNumber(List<Integer> winningNumber) {
+        if (winningNumber.size() != 6) {
+            ExceptionMessage.isCountNotSix();
+            throw new IllegalArgumentException();
+        }
+        for (int i = 0; i < winningNumber.size(); i++) {
+            if (winningNumber.get(i) < 1 || winningNumber.get(i) > 45) {
+                ExceptionMessage.isNotRange();
+                throw new IllegalArgumentException();
+            }
+        }
+        HashSet<Integer> numbers =  new HashSet<>(winningNumber);
+        if (winningNumber.size() != numbers.size()) {
+            ExceptionMessage.isDuplicate();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateBonusNumber(List<Integer> winningNumber, int bonusNumber) {
+        if (winningNumber.contains(bonusNumber)) {
+            ExceptionMessage.isNotPossibleBonus();
+            throw new IllegalArgumentException();
+        }
+    }
+
 
     private static List<Lotto> makeLottoList(int ticketCount) {
         lottoList = new ArrayList<>();
@@ -46,7 +71,7 @@ public class LottoController {
     }
 
     private static Lotto makeLotto() {
-        List<Integer> lotto = new ArrayList<>();
+        List<Integer> lotto;
         lotto = Numbers.randomNumbers();
         System.out.println(lotto);
 

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.Lotto;
+import lotto.view.ExceptionMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +16,13 @@ public class LottoNumber {
     }
 
     private void moneyValidate(int money) {
-        if (money <= 0 || money % 1000 != 0) {
-            throw new IllegalStateException("error");
+        if (money <= 0) {
+            ExceptionMessage.isPositive();
+            throw new IllegalArgumentException();
+        }
+        if (money % 1000 != 0) {
+            ExceptionMessage.isDivisible();
+            throw new IllegalArgumentException();
         }
     }
 
