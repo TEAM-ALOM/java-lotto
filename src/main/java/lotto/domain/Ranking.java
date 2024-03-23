@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.view.OutputView;
+
 public enum Ranking {
     FIRST(6, 2_000_000_000, "6개 일치 (2,000,000,000원) - "), // 1등
     SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원) - "), // 2등
@@ -46,4 +48,9 @@ public enum Ranking {
         return this.countOfMatch == countOfMatch;
     }
 
+    public void printMessage(int count) {
+        if (this != MISS) {
+            OutputView.printSuccessMessage(message, count);
+        }
+    }
 }
