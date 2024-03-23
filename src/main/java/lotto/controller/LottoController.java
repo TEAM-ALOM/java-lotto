@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.*;
+import lotto.view.InputView;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
