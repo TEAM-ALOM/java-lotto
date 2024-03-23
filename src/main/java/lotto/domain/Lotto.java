@@ -1,8 +1,7 @@
 package lotto.domain;
 
-import org.kokodak.Randoms;
+import lotto.view.ExceptionMessage;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -12,9 +11,10 @@ public class Lotto {
         this.numbers=numbers;
     }
 
-    public List<Integer> getNumbers(){
+    public List<Integer> getLottoNumbers() {
         return this.numbers;
     }
+
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
@@ -31,5 +31,11 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    public static void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            ExceptionMessage.overlapException();
+            throw new IllegalArgumentException();
+        }
+    }
     // TODO: 추가 기능 구현
 }
