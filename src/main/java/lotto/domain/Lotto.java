@@ -1,13 +1,21 @@
-package lotto;
+package lotto.domain;
 
+import org.kokodak.Randoms;
+
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
-
     public Lotto(List<Integer> numbers) {
+        numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(numbers);
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers(){
+        return this.numbers;
     }
 
     private void validate(List<Integer> numbers) {
