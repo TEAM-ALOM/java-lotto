@@ -15,7 +15,7 @@ public class LottoNumbers {
     private static List<Integer> lotooNumberList;
 
     public static List<Integer> setRandomNumbers(){
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, CNT_LOTTO_NUMBER);
         Collections.sort(numbers);
         return numbers;
     }
