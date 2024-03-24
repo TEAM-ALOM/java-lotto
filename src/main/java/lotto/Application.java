@@ -29,18 +29,25 @@ public class Application {
         }
     }
 
+    private static List<Lotto> getLottoNums(int numOfPurchase) {
+        List<Lotto> lottoList = new ArrayList<>();
+        for (int i = 0; i < numOfPurchase; i++) {
+            List<Integer> numbers = generateLottoNumbers(); // 6개의 랜덤한 번호 생성
+            Lotto lotto = new Lotto(numbers); // 생성된 번호로 Lotto 객체 생성
+            lottoList.add(lotto); // 리스트에 Lotto 객체 추가
+        }
+
+        return lottoList;
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
        // Scanner sc = new Scanner(System.in);
         int cash = cashInput();
         int numOfPurchase = cash / 1000;
         System.out.println(numOfPurchase + "개를 구매하셨습니다");
-        List<Lotto> lottoList = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
-            List<Integer> numbers = generateLottoNumbers(); // 6개의 랜덤한 번호 생성
-            Lotto lotto = new Lotto(numbers); // 생성된 번호로 Lotto 객체 생성
-            lottoList.add(lotto); // 리스트에 Lotto 객체 추가
-        }
+        //
+        List<Lotto> lottoList = getLottoNums(numOfPurchase);
 
         // 생성된 Lotto 객체들을 사용하거나 출력
         for (int i = 0; i < lottoList.size(); i++) {
