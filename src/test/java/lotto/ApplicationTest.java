@@ -12,6 +12,14 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
+    void input_count_error() {
+        assertSimpleTest(() -> {
+            runException("-8000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
