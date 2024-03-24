@@ -40,41 +40,66 @@ public class Application {
         return lottoList;
     }
 
-    public static void main(String[] args) {
-        // TODO: 프로그램 구현
-       // Scanner sc = new Scanner(System.in);
-        int cash = cashInput();
-        int numOfPurchase = cash / 1000;
-        System.out.println(numOfPurchase + "개를 구매하셨습니다");
-        //
-        List<Lotto> lottoList = getLottoNums(numOfPurchase);
-
-        // 생성된 Lotto 객체들을 사용하거나 출력
+    public static void printLotto(List<Lotto> lottoList){
         for (int i = 0; i < lottoList.size(); i++) {
             Lotto lotto = lottoList.get(i);
             System.out.println("Lotto " + (i + 1) + " numbers: " + lotto.getNumbers());
         }
+    }
+
+    private static String[] winningNumInput(){
         System.out.println("당첨 번호를 입력해 주세요.");
         String str = Console.readLine();
         String[] array = str.split(",");
-        if (array.length != 6)
-        {
-            System.out.println("error");
-            //error처리 추가
+        return array;
+    }
+
+    private static boolean InputValidationCheck(String[] array){
+        if (array.length != 6) {
+            System.out.println("[ERROR]Invalid number count");
+            return false;
         }
-        //숫자 자르기
-        List<Integer> winnigNum = new ArrayList<>();
-        int i = 0;
-        //위닝넘버를 저장한다
-        for (int j = 0; j < 6; j++)
-        {
-            int num = Integer.parseInt(array[i++]);
+        for (String tmp: array) {
+            int num = Integer.parseInt(tmp);
             if (num > 45 || num < 1) {
-                System.out.println("error");
-                //error동작
+                System.out.println("[ERROR]Invalid Num Arrange");
+                return false;
             }
-            winnigNum.add(num); //winning num 리스트에 값들을 추가한다
         }
+        return true;
+    }
+
+    public static List<Integer> getWinningNum(){
+        List<Integer> winningNum = new ArrayList<>();
+        String[] winningNumStr;
+        //올바른 값이 들어오도록 계속 입력받아야한다
+        while (true) {
+            winningNumStr = winningNumInput();
+            if (InputValidationCheck(winningNumStr) == true) {
+                break;
+            }
+        }
+        //올바르게 입력받은 당첨 번호들을 나눠야한다
+        for (String tmp : winningNumStr) {
+            winningNum.add(Integer.parseInt((tmp)));
+        }
+        return winningNum;
+    }
+
+    public static void main(String[] args) {
+        // TODO: 프로그램 구현
+        int cash = cashInput(); //금액을 입력받음
+        int numOfPurchase = cash / 1000;
+        System.out.println(numOfPurchase + "개를 구매하셨습니다");
+
+        //로또 번호를 생성한다
+        List<Lotto> lottoList = getLottoNums(numOfPurchase);
+
+        // 생성된 Lotto 객체들을 사용하거나 출력
+        printLotto(lottoList);
+
+        //당첨번호 입력받기
+        List<Integer> winnigNum = getWinningNum();//new ArrayList<>();
         int bonusNum;
         while (true) {
             System.out.println("보너스 번호를 입력해 주세요.");
