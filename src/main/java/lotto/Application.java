@@ -51,6 +51,7 @@ public class Application {
         return array;
     }
 
+
     private static boolean InputValidationCheck(String[] array){
         if (array.length != 6) {
             System.out.println("[ERROR]Invalid number count");
@@ -126,6 +127,11 @@ public class Application {
         int sum = 0;
         String[] winnigAmount = {"5,000", "50,000", "1,500,000", "30,000,000", "2,000,000,000"};
         for (int i = 3; i <= 7; i++) {
+            if (i == 6)
+                System.out.println(i - 1 + "개 일치, 보너스 볼 일치 (" + winnigAmount[i - 3] + "원) - " + counts.getOrDefault(i, 0) + "개");
+            else if (i == 7)
+                System.out.println(i - 1 + "개 일치 (" + winnigAmount[i - 3] + "원) - " + counts.getOrDefault(i, 0) + "개");
+            else
             System.out.println(i + "개 일치 (" + winnigAmount[i - 3] + "원) - " + counts.getOrDefault(i, 0) + "개");
             sum += counts.getOrDefault(i, 0) * Integer.parseInt(winnigAmount[i - 3].replace(",", ""));
         }
@@ -141,7 +147,7 @@ public class Application {
         //당첨개수를 출력한다
         int sum = printSpecificNumberCounts(lottoResult, lottoList);
         System.out.println("sum : " + sum);
-        double rateOfReturn = Math.round(((double)sum / (numOfPurchase * 1000)) * 10.0) / 10.0;
+        double rateOfReturn = Math.round(((double)sum / (numOfPurchase * 1000) * 100) * 10.0) / 10.0;
         System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 
@@ -149,7 +155,7 @@ public class Application {
         // TODO: 프로그램 구현
         int cash = cashInput(); //금액을 입력받음
         int numOfPurchase = cash / 1000;
-        System.out.println(numOfPurchase + "개를 구매하셨습니다");
+        System.out.println(numOfPurchase + "개를 구매했습니다.");
 
         //로또 번호를 생성한다
         List<Lotto> lottoList = getLottoNums(numOfPurchase);
