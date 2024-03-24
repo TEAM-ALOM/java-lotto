@@ -19,6 +19,8 @@ public class Application {
         while (true) {
             System.out.println("구매금액을 입력해 주세요.");
             String input = Console.readLine(); //수정중
+            if (stringIsInt(input) == false)
+                continue;
             cash = Integer.parseInt(input);
             if (cash >= 1000)
                 return cash;
@@ -51,6 +53,17 @@ public class Application {
         return array;
     }
 
+    public static boolean stringIsInt(String str){
+        int num;
+        try {
+            num = Integer.parseInt(str);
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR]Invalid Num Input");
+            return false;
+            // 변환에 실패한 경우, 문자열에 숫자 이외의 문자가 포함되어 있다.
+        }
+        return true;
+    }
 
     private static boolean InputValidationCheck(String[] array){
         if (array.length != 6) {
@@ -58,14 +71,9 @@ public class Application {
             return false;
         }
         for (String tmp: array) {
-            int num;
-            try {
-                num = Integer.parseInt(tmp);
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR]Invalid Num Input");
+            if (stringIsInt(tmp) == false)
                 return false;
-                // 변환에 실패한 경우, 문자열에 숫자 이외의 문자가 포함되어 있다.
-            }
+            int num = Integer.parseInt(tmp);
             if (num > 45 || num < 1) {
                 System.out.println("[ERROR]Invalid Num Arrange");
                 return false;
@@ -151,6 +159,16 @@ public class Application {
         System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 
+    private static int getBonusNum(){
+        while (true) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String str = Console.readLine();
+            if (stringIsInt(str) == false)
+                continue;
+            return Integer.parseInt(str);
+        }
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int cash = cashInput(); //금액을 입력받음
@@ -165,11 +183,8 @@ public class Application {
 
         //당첨번호 입력받기
         List<Integer> winningNum = getWinningNum();
-        int bonusNum;
-        System.out.println("보너스 번호를 입력해 주세요.");
-        bonusNum = Integer.parseInt(Console.readLine());
 
         //7개의 당첨번호로 로또마다 당첨금액을 계산한다
-        winningStatistics(winningNum, lottoList, bonusNum, numOfPurchase);
+        winningStatistics(winningNum, lottoList, getBonusNum(), numOfPurchase);
     }
 }
