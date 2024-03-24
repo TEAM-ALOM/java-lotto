@@ -1,5 +1,7 @@
 package lotto.model.domain;
 
+import lotto.validation.ErrorMessage;
+
 public class LottosWinningStatus {
     private final int matchesThree;
     private final int matchesFour;
@@ -15,7 +17,18 @@ public class LottosWinningStatus {
         this.matchesFive = matchesFive;
         this.matchesFiveWithBonus = matchesFiveWithBonus;
         this.matchesSix = matchesSix;
+        validationProfitRatio(profitRatio);
         this.profitRatio = profitRatio;
+    }
+
+    private void validationProfitRatio(double profitRatio) {
+        checkMaxProfitRatio(profitRatio);
+    }
+
+    private static void checkMaxProfitRatio(double profitRatio) {
+        if (profitRatio > (double) WinningType.MATCHES_SIX.getProfitMoney() / 1000) {
+            throw new IllegalArgumentException(ErrorMessage.WINNING_STATUS_PROFIT_RATIO_OVER_MAX.getMessage());
+        }
     }
 
     public double getProfitRatio() {
