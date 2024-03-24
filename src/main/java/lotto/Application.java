@@ -99,37 +99,50 @@ public class Application {
     }
 
 
-    private static int matches(List<Integer> winningNum, Lotto lottos){
+    private static int matches(List<Integer> winningNum, Lotto lottos, int bonusNum){
         int match = 0;
+        int flag = 0;
 
         for (int number : lottos.getNumbers()){
             if (checkNumInWinningNum(winningNum, number) == true)
                 match++;
+            if (number == bonusNum)
+                flag = 1;
         }
+        if (match == 6)
+            match = 7;
+        if (match == 5 && flag == 1)
+            match = 6;
         return match; //몇개가 일치하는지 제공
     }
 
-    public static void printSpecificNumberCounts(List<Integer> numbers) {
+    public static int printSpecificNumberCounts(List<Integer> numbers, List<Lotto>lottoList) {
         Map<Integer, Integer> counts = new HashMap<>();
         for (int num : numbers) {
             if (num >= 3 && num <= 6) {
                 counts.put(num, counts.getOrDefault(num, 0) + 1);
             }
         }
-
-        for (int i = 3; i <= 6; i++) {
-            System.out.println(i + "개 일치" + counts.getOrDefault(i, 0) + "개");
+        int sum = 0;
+        String[] winnigAmount = {"5,000", "50,000", "1,500,000", "30,000,000", "2,000,000,000"};
+        for (int i = 3; i <= 7; i++) {
+            System.out.println(i + "개 일치 (" + winnigAmount[i - 3] + "원) - " + counts.getOrDefault(i, 0) + "개");
+            sum += counts.getOrDefault(i, 0) * Integer.parseInt(winnigAmount[i - 3].replace(",", ""));
         }
+        return sum;
     }
 
-    public static void winningStatistics(List<Integer> winningNum, List<Lotto> lottoList){
+    public static void winningStatistics(List<Integer> winningNum, List<Lotto> lottoList, int bonusNum, int numOfPurchase){
         List<Integer> lottoResult = new ArrayList<>();
 
         for (Lotto lottos : lottoList){
-            lottoResult.add(matches(winningNum, lottos));
+            lottoResult.add(matches(winningNum, lottos, bonusNum));
         }
-
-        printSpecificNumberCounts(lottoResult);
+        //당첨개수를 출력한다
+        int sum = printSpecificNumberCounts(lottoResult, lottoList);
+        System.out.println("sum : " + sum);
+        double rateOfReturn = Math.round(((double)sum / (numOfPurchase * 1000)) * 10.0) / 10.0;
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 
     public static void main(String[] args) {
@@ -149,9 +162,8 @@ public class Application {
         int bonusNum;
         System.out.println("보너스 번호를 입력해 주세요.");
         bonusNum = Integer.parseInt(Console.readLine());
-        winningNum.add(bonusNum);
 
         //7개의 당첨번호로 로또마다 당첨금액을 계산한다
-        winningStatistics(winningNum, lottoList);
+        winningStatistics(winningNum, lottoList, bonusNum, numOfPurchase);
     }
 }
