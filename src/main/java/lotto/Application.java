@@ -1,7 +1,5 @@
 package lotto;
-import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 import org.kokodak.Console;
 import org.kokodak.Randoms;
@@ -21,7 +19,6 @@ public class Application {
         while (true) {
             System.out.println("구매금액을 입력해 주세요.");
             String input = Console.readLine(); //수정중
-//            cash = sc.nextInt(); //금액입력받음 //Console 메소드 사용으로 바꿔야한다
             cash = Integer.parseInt(input);
             if (cash >= 1000)
                 return cash;
@@ -60,7 +57,14 @@ public class Application {
             return false;
         }
         for (String tmp: array) {
-            int num = Integer.parseInt(tmp);
+            int num;
+            try {
+                num = Integer.parseInt(tmp);
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR]Invalid Num Input");
+                return false;
+                // 변환에 실패한 경우, 문자열에 숫자 이외의 문자가 포함되어 있다.
+            }
             if (num > 45 || num < 1) {
                 System.out.println("[ERROR]Invalid Num Arrange");
                 return false;
@@ -86,6 +90,48 @@ public class Application {
         return winningNum;
     }
 
+    private static boolean checkNumInWinningNum(List<Integer> winningNum, int number){
+        for (int winNum : winningNum) {
+            if (number == winNum)
+                return true;
+        }
+        return false;
+    }
+
+
+    private static int matches(List<Integer> winningNum, Lotto lottos){
+        int match = 0;
+
+        for (int number : lottos.getNumbers()){
+            if (checkNumInWinningNum(winningNum, number) == true)
+                match++;
+        }
+        return match; //몇개가 일치하는지 제공
+    }
+
+    public static void printSpecificNumberCounts(List<Integer> numbers) {
+        Map<Integer, Integer> counts = new HashMap<>();
+        for (int num : numbers) {
+            if (num >= 3 && num <= 6) {
+                counts.put(num, counts.getOrDefault(num, 0) + 1);
+            }
+        }
+
+        for (int i = 3; i <= 6; i++) {
+            System.out.println(i + "개 일치" + counts.getOrDefault(i, 0) + "개");
+        }
+    }
+
+    public static void winningStatistics(List<Integer> winningNum, List<Lotto> lottoList){
+        List<Integer> lottoResult = new ArrayList<>();
+
+        for (Lotto lottos : lottoList){
+            lottoResult.add(matches(winningNum, lottos));
+        }
+
+        printSpecificNumberCounts(lottoResult);
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int cash = cashInput(); //금액을 입력받음
@@ -99,27 +145,13 @@ public class Application {
         printLotto(lottoList);
 
         //당첨번호 입력받기
-        List<Integer> winnigNum = getWinningNum();//new ArrayList<>();
+        List<Integer> winningNum = getWinningNum();
         int bonusNum;
-        while (true) {
-            System.out.println("보너스 번호를 입력해 주세요.");
-            bonusNum = Integer.parseInt(Console.readLine());
-            if (bonusNum > 45 || bonusNum < 1) {
-                System.out.println("error");
-                //error동작
-            }
-            else {
-                break;
-            }
-        }
-        winnigNum.add(bonusNum);
-        //7개의 당첨번호로 로또마다 당첨금액을 계산한다
-        for (int j = 0; j < numOfPurchase ; j++)
-        {
-            for (int k = 0; k < 6; k++)
-            {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        bonusNum = Integer.parseInt(Console.readLine());
+        winningNum.add(bonusNum);
 
-            }
-        }
+        //7개의 당첨번호로 로또마다 당첨금액을 계산한다
+        winningStatistics(winningNum, lottoList);
     }
 }
