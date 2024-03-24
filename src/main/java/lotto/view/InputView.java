@@ -11,8 +11,9 @@ public class InputView {
     private static final String LOTTO_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String LOTTO_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String NOT_NUMBER = "[ERROR] 숫자가 아닌 값이 입력됐습니다.";
+    private static final String SEPARATOR_VALUE = ",";
 
-    public int getPurchaseAmount() {
+    public static int getPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_MESSAGE);
         try {
             return Integer.parseInt(Console.readLine());
@@ -21,10 +22,10 @@ public class InputView {
         }
     }
 
-    public List<Integer> getLottoNumber() {
+    public static List<Integer> getLottoNumber() {
         System.out.println(LOTTO_NUMBER_MESSAGE);
         try {
-            return Arrays.stream(Console.readLine().split(","))
+            return Arrays.stream(Console.readLine().split(SEPARATOR_VALUE))
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException numberFormatException) {
@@ -32,7 +33,7 @@ public class InputView {
         }
     }
 
-    public int getLottoBonusNumber() {
+    public static int getLottoBonusNumber() {
         System.out.println(LOTTO_BONUS_NUMBER_MESSAGE);
         try {
             return Integer.parseInt(Console.readLine());
