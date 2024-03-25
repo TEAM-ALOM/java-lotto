@@ -18,8 +18,8 @@ import lotto.model.domain.WinningNumbers;
 
 public class LottosWinningChecker {
 
-    public static LottosWinningStatus generateWinningStatusAndInput(LottoUser lottoUser,
-                                                                    WinningNumbers winningNumbers) {
+    public static void generateWinningStatusAndInput(LottoUser lottoUser,
+                                                     WinningNumbers winningNumbers) {
         Lottos lottos = lottoUser.getLottos();
 
         AtomicInteger matchesThree = new AtomicInteger();
@@ -28,14 +28,16 @@ public class LottosWinningChecker {
         AtomicInteger matchesFiveWithBonus = new AtomicInteger();
         AtomicInteger matchesSix = new AtomicInteger();
 
-        lottos.getLottos().forEach(lotto -> {
+        lottos.getLottoBundle().forEach(lotto -> {
                     int matchesCount = getMatchesCount(lotto.getNumbers(), winningNumbers.getWinningLotto().getNumbers());
                     stackByMatchesCount(lotto, matchesCount, matchesThree, matchesFour, matchesFiveWithBonus, matchesFive,
                             matchesSix, winningNumbers);
                 }
         );
 
-        return getWinningStatus(matchesThree, matchesFour, matchesFive, matchesFiveWithBonus, matchesSix, lottoUser);
+        lottoUser.setLottosWinningStatus(
+                getWinningStatus(matchesThree, matchesFour, matchesFive, matchesFiveWithBonus, matchesSix, lottoUser));
+//        return getWinningStatus(matchesThree, matchesFour, matchesFive, matchesFiveWithBonus, matchesSix, lottoUser);
 
 //        inputWinningStatusToUser(matchesThree, matchesFour, matchesFive, matchesFiveWithBonus, matchesSix);
     }
@@ -64,6 +66,7 @@ public class LottosWinningChecker {
                                                AtomicInteger matchesFiveWithBonus, AtomicInteger matchesSix,
                                                LottoUser lottoUser) {
         return (double) getTotalProfitMoney(matchesThree, matchesFour, matchesFive, matchesFiveWithBonus, matchesSix)
+                * 100
                 / lottoUser.getMoney();
     }
 

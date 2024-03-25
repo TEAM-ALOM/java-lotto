@@ -52,15 +52,6 @@ class InputViewTest {
                 .hasMessage(MONEY_FOR_PURCHASE_NOT_NUMBER.getMessage());
     }
 
-//    @Test
-//    void 당첨번호_비정상_입력_쉼표누락() {
-//        String input = "1,,3,4,5,6";
-//        setInput(input);
-//        assertThatThrownBy(() -> InputView.winningNumbersInput())
-//                .isInstanceOf(IllegalStateException.class)
-//                .hasMessage(ErrorMessage.MONEY_FOR_PURCHASE_NOT_NUMBER.getMessage());
-//    }
-
     @Test
     void 당첨번호_비정상_입력_쉼표중복_예외발생() {
         String input = "1,,3,4,5,6";

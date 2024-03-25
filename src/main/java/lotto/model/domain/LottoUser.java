@@ -2,9 +2,12 @@ package lotto.model.domain;
 
 public class LottoUser {
     private Lottos lottos;
-    private final int money;
+    private int money;
     private LottosWinningStatus lottosWinningStatus;
 
+    public LottoUser() {
+
+    }
 
     public LottoUser(int money) {
         this.money = money;
@@ -57,5 +60,9 @@ public class LottoUser {
 
     public void setLottosWinningStatus(LottosWinningStatus lottosWinningStatus) {
         this.lottosWinningStatus = lottosWinningStatus;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
     }
 }
