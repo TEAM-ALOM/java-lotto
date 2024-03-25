@@ -17,7 +17,9 @@ public enum ErrorMessage {
     BONUS_NUMBER_IS_DUPLICATED("당첨번호와 중복된 수입니다."),
     BONUS_NUMBER_OUT_OF_RANGE("보너스 번호도 로또 번호와 같이 1~45 사이의 수입니다."),
 
-    WINNING_STATUS_PROFIT_RATIO_OVER_MAX("수익률은 이론상 최대 수익률을 넘을 수 없습니다. 다시 계산하세요");
+    WINNING_STATUS_PROFIT_RATIO_OVER_MAX("수익률은 이론상 최대 수익률을 넘을 수 없습니다. 다시 계산하세요"),
+
+    OUTPUT_VIEW_WINNING_STATUS_NUMBER_MINUS("당첨 통계의 값은 음수일 수 없습니다.");
 
     private final String message;
     private static final String START_ERROR = "[ERROR] ";
