@@ -7,13 +7,13 @@ import java.util.List;
 
 public class Lottos {
     private final int count;
-    private final List<Lotto> lottos;
+    private final List<Lotto> lottoBundle;
 
-    public Lottos(int count, List<Lotto> lottos) {
+    public Lottos(int count, List<Lotto> lottoBundle) {
         validationCount(count);
         this.count = count;
-        validationLottos(count, lottos);
-        this.lottos = lottos;
+        validationLottos(count, lottoBundle);
+        this.lottoBundle = lottoBundle;
     }
 
     private void validationCount(int count) {
@@ -40,7 +40,7 @@ public class Lottos {
         return count;
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
+    public List<Lotto> getLottoBundle() {
+        return lottoBundle;
     }
 }
