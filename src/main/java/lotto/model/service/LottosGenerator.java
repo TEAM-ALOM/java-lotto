@@ -12,23 +12,14 @@ public class LottosGenerator {
     private static final int MAX_LOTTO_NUMBER = 45;
     private static final int LOTTO_COUNT = 6;
 
-    private final LottoUser lottoUser;
 
-    public LottosGenerator(LottoUser lottoUser) {
-        this.lottoUser = lottoUser;
+    public static void generateLottosAndInput(LottoUser lottoUser, int userMoney) {
+        int count = userMoney / 1000;
+
+        lottoUser.setLottos(new Lottos(count, generateLottos(count)));
     }
 
-    public void generateLottosAndInput() {
-        int count = lottoUser.getMoney() / 1000;
-
-        List<Lotto> userLottos = generateLottos(count);
-
-        lottoUser.setLottos(new Lottos(
-                count, userLottos
-        ));
-    }
-
-    private List<Lotto> generateLottos(int count) {
+    private static List<Lotto> generateLottos(int count) {
         List<Lotto> userLottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             userLottos.add(generateLotto());
@@ -36,7 +27,7 @@ public class LottosGenerator {
         return userLottos;
     }
 
-    private Lotto generateLotto() {
+    private static Lotto generateLotto() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_COUNT));
     }
 

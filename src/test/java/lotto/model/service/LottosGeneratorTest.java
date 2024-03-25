@@ -8,18 +8,17 @@ import org.junit.jupiter.api.Test;
 class LottosGeneratorTest {
 
     private static LottoUser lottoUser;
-    private static LottosGenerator lottosGenerator;
+    private static final int USER_MONEY = 3000;
 
     @BeforeAll
     static void setLottoUser() {
-        lottoUser = new LottoUser(3000);
-        lottosGenerator = new LottosGenerator(lottoUser);
+        lottoUser = new LottoUser(USER_MONEY);
     }
 
     @Test
     void Lottos_정상_생성후_유저에_삽입() {
-        lottosGenerator.generateLottosAndInput();
-        Assertions.assertThat(lottoUser.getLottos().getLottos().size())
+        LottosGenerator.generateLottosAndInput(lottoUser, USER_MONEY);
+        Assertions.assertThat(lottoUser.getLottos().getLottoBundle().size())
                 .isEqualTo(lottoUser.getMoney() / 1000);
     }
 }
