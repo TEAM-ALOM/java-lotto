@@ -1,6 +1,5 @@
 package lotto.view;
 
-import static lotto.validation.ErrorMessage.OUTPUT_VIEW_WINNING_STATUS_NUMBER_MINUS;
 import static lotto.view.ViewMessage.BONUS_NUMBER_PROMPT;
 import static lotto.view.ViewMessage.LOTTOS_SIZE_PROMPT;
 import static lotto.view.ViewMessage.MAIN_WINNING_NUMBERS_PROMPT;
@@ -11,6 +10,7 @@ import static lotto.view.ViewMessage.WINNING_STATUS_START;
 import java.util.List;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.LottosWinningStatus;
+import lotto.validation.Validation;
 
 public class OutputView {
 
@@ -52,28 +52,15 @@ public class OutputView {
     }
 
     private static void validationWinningStatusNumber(LottosWinningStatus lottosWinningStatus) {
-        checkStatusValueMinus(lottosWinningStatus.getMatchesThree());
-        checkStatusValueMinus(lottosWinningStatus.getMatchesFour());
-        checkStatusValueMinus(lottosWinningStatus.getMatchesFive());
-        checkStatusValueMinus(lottosWinningStatus.getMatchesFiveWithBonus());
-        checkStatusValueMinus(lottosWinningStatus.getMatchesSix());
-        checkStatusValueMinus(roundToTwoDigits(lottosWinningStatus.getProfitRatio()));
+        Validation.checkStatusValueMinus(lottosWinningStatus.getMatchesThree());
+        Validation.checkStatusValueMinus(lottosWinningStatus.getMatchesFour());
+        Validation.checkStatusValueMinus(lottosWinningStatus.getMatchesFive());
+        Validation.checkStatusValueMinus(lottosWinningStatus.getMatchesFiveWithBonus());
+        Validation.checkStatusValueMinus(lottosWinningStatus.getMatchesSix());
+        Validation.checkStatusValueMinus(roundToTwoDigits(lottosWinningStatus.getProfitRatio()));
     }
 
     private static double roundToTwoDigits(double profitRatio) {
         return profitRatio + 0.05;
     }
-
-    private static void checkStatusValueMinus(int lottosWinningStatusValue) {
-        if (lottosWinningStatusValue < 0) {
-            throw new IllegalArgumentException(OUTPUT_VIEW_WINNING_STATUS_NUMBER_MINUS.getMessage());
-        }
-    }
-
-    private static void checkStatusValueMinus(double lottosWinningStatusValue) {
-        if (lottosWinningStatusValue < 0) {
-            throw new IllegalArgumentException(OUTPUT_VIEW_WINNING_STATUS_NUMBER_MINUS.getMessage());
-        }
-    }
-
 }
