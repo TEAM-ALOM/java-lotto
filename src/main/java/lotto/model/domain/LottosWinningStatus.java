@@ -26,7 +26,7 @@ public class LottosWinningStatus {
     }
 
     private static void checkMaxProfitRatio(double profitRatio) {
-        if (profitRatio > (double) WinningType.MATCHES_SIX.getProfitMoney() / 1000) {
+        if (profitRatio > (double) WinningType.MATCHES_SIX.getProfitMoney() * 100 / 1000) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_STATUS_PROFIT_RATIO_OVER_MAX.getMessage());
         }
     }

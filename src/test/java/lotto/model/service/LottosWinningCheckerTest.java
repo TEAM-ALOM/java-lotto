@@ -19,7 +19,6 @@ import org.junit.jupiter.api.Test;
 
 class LottosWinningCheckerTest {
     private static LottoUser lottoUser;
-    private static WinningNumbers winningNumbers;
     private static final int USER_MONEY = 5000;
 
     @BeforeAll
@@ -111,7 +110,7 @@ class LottosWinningCheckerTest {
                 bonusNumber);
 
         assertThat(lottosWinningStatus.getProfitRatio()).isEqualTo(
-                (double) lottosWinningStatus.getMatchesThree() * MATCHES_THREE.getProfitMoney() / USER_MONEY);
+                (double) lottosWinningStatus.getMatchesThree() * MATCHES_THREE.getProfitMoney() * 100 / USER_MONEY);
     }
 
     @Test
@@ -121,12 +120,8 @@ class LottosWinningCheckerTest {
         LottosWinningStatus lottosWinningStatus = getLottosWinningStatusAfterWinningChecker(
                 inputWinningLottoNumbers, bonusNumber);
 
-        System.out.println(lottosWinningStatus.getMatchesThree());
-        System.out.println(lottosWinningStatus.getMatchesFour());
-        System.out.println(lottosWinningStatus.getMatchesFive());
-
         assertThat(lottosWinningStatus.getProfitRatio()).isEqualTo(
-                (double) lottosWinningStatus.getMatchesFour() * MATCHES_FOUR.getProfitMoney() / USER_MONEY);
+                (double) lottosWinningStatus.getMatchesFour() * MATCHES_FOUR.getProfitMoney() * 100 / USER_MONEY);
     }
 
     @Test
@@ -137,7 +132,7 @@ class LottosWinningCheckerTest {
                 inputWinningLottoNumbers, bonusNumber);
 
         assertThat(lottosWinningStatus.getProfitRatio()).isEqualTo(
-                (double) lottosWinningStatus.getMatchesFive() * MATCHES_FIVE.getProfitMoney() / USER_MONEY);
+                (double) lottosWinningStatus.getMatchesFive() * MATCHES_FIVE.getProfitMoney() * 100 / USER_MONEY);
     }
 
     @Test
@@ -149,7 +144,7 @@ class LottosWinningCheckerTest {
 
         assertThat(lottosWinningStatus.getProfitRatio()).isEqualTo(
                 (double) lottosWinningStatus.getMatchesFiveWithBonus() *
-                        MATCHES_FIVE_WITH_BONUS.getProfitMoney() / USER_MONEY);
+                        MATCHES_FIVE_WITH_BONUS.getProfitMoney() * 100 / USER_MONEY);
     }
 
     @Test
@@ -160,17 +155,19 @@ class LottosWinningCheckerTest {
                 inputWinningLottoNumbers, bonusNumber);
 
         assertThat(lottosWinningStatus.getProfitRatio()).isEqualTo(
-                (double) lottosWinningStatus.getMatchesSix() * MATCHES_SIX.getProfitMoney() / USER_MONEY);
+                (double) lottosWinningStatus.getMatchesSix() * MATCHES_SIX.getProfitMoney() * 100 / USER_MONEY);
     }
 
     private static LottosWinningStatus getLottosWinningStatusAfterWinningChecker(List<Integer> inputWinningLottoNumbers,
                                                                                  int bonusNumber) {
-        winningNumbers = new WinningNumbers(
+        WinningNumbers winningNumbers = new WinningNumbers(
                 inputWinningLottoNumbers,
                 bonusNumber
         );
-        return LottosWinningChecker.generateWinningStatusAndInput(lottoUser,
+        LottosWinningChecker.generateWinningStatusAndInput(lottoUser,
                 winningNumbers);
+
+        return lottoUser.getLottosWinningStatus();
     }
 
 }
