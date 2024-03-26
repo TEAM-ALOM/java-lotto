@@ -3,6 +3,7 @@ package lotto;
 import org.kokodak.Console;
 import org.kokodak.Randoms;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Application {
@@ -14,10 +15,15 @@ public class Application {
 
         //로또 구입 금액 입력
         System.out.println("구입금액을 입력해 주세요.");
-        int purchase = Integer.parseInt(Console.readLine());
-        System.out.println();
+        String str = Console.readLine();
+        int purchase = 0;
+        try {
+            purchase = Integer.parseInt(str);
+        } catch (Exception e) {
+            System.out.println("[ERROR]");
+            return;
+        }
 
-        //잘못된 구입 금액 예외처리
         if(purchase % lotto_price != 0){
             throw new IllegalArgumentException("[ERROR]");
         }
@@ -28,9 +34,10 @@ public class Application {
         //로또 구입
         System.out.println(lotto_num + "개를 구매했습니다.");
         ArrayList<Lotto> myLotto = new ArrayList<>();
+
         for(int i=0;i<lotto_num;i++){
             List<Integer> ns = Randoms.pickUniqueNumbersInRange(1,45,6);
-            Collections.sort(ns);
+            //Collections.sort(ns);
             Lotto a = new Lotto(ns);
             myLotto.add(a);
         }
@@ -39,6 +46,7 @@ public class Application {
         //구입한 로또 출력
         for(Lotto i : myLotto)
             i.printLotto();
+        System.out.println();
 
         //당첨 번호 입력
         System.out.println("당첨 번호를 입력해 주세요.");
@@ -53,10 +61,12 @@ public class Application {
         //예외처리
         //1미만, 45초과인 경우 예외처리
         if(ns.get(0) < 1 || ns.get(5) > 45){
+            System.out.println("[ERROR]");
             throw new IllegalArgumentException("[ERROR]");
         }
         //중복된 번호가 있는 경우 예외 처리
         if(ns.size() != ns.stream().distinct().count()){
+            System.out.println("[ERROR]");
             throw new IllegalArgumentException("[ERROR]");
         }
 
@@ -65,11 +75,11 @@ public class Application {
 
         //보너스 번호 입력
         System.out.println("보너스 번호를 입력해 주세요.");
-        String bn = Console.readLine();
-        int bonus_number = Integer.parseInt(bn);
+        int bonus_number = Integer.parseInt(Console.readLine());
 
         //예외 처리
         if(bonus_number < 1 || bonus_number > 45){
+            System.out.println("[ERROR]");
             throw new IllegalArgumentException("[ERROR]");
         }
         System.out.println();
@@ -110,10 +120,10 @@ public class Application {
 
         //수익률 계산
         int profit = Lotto.getProfit(prize);
-        System.out.println(profit);
         double earning_rate = (double)profit / (double)purchase * 100.0d;
-        String str = String.format("총 수익률은 %.1f%%입니다", earning_rate);
-        System.out.println(str);
+        String str1 = String.format("총 수익률은 %.1f%%입니다.", earning_rate);
+        System.out.println(str1);
 
     }
+
 }
