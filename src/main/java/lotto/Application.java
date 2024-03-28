@@ -37,16 +37,16 @@ public class Application {
 
         for(int i=0;i<lotto_num;i++){
             List<Integer> ns = Randoms.pickUniqueNumbersInRange(1,45,6);
-            //Collections.sort(ns);
+            Collections.sort(ns);
             Lotto a = new Lotto(ns);
             myLotto.add(a);
         }
-        System.out.println();
+        //System.out.println();
 
         //구입한 로또 출력
         for(Lotto i : myLotto)
             i.printLotto();
-        System.out.println();
+        //System.out.println();
 
         //당첨 번호 입력
         System.out.println("당첨 번호를 입력해 주세요.");
